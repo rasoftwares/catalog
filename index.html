@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   
   <!--Added for debugging purpose remove while doing production -->
-  <meta http-equiv="refresh" content="10">
+  <!--meta http-equiv="refresh" content="10"-->
   
 
   <script src="components/jquery.min.js"></script>
@@ -55,15 +55,17 @@
           <p> Price    :  {{ product.price|currency:"":2}} <br>
               Discount : {{ product.discount|currency:"":2}} 
           </p>
-          <p> <a href="#" class="btn btn-primary" role="button">Remove</a>
+          <p> <a href="#" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a>
 
-             <button type="button" class="btn btn-default btn-lg"> <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
+             <a href="#" class="btn btn-warning" role="button"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a>
            </p>
         </div>
       </div>
     </div>
     </div>
   </div>
+
+
 
   <div class="row">
     <center>
@@ -83,6 +85,13 @@
   </div>
 </body>
 <script>
+
+var cart = [];
+
+function addToCart(product) {
+  cart.push(product);
+}
+
 
 </script>
 </html>

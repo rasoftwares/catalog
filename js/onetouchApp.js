@@ -5,6 +5,8 @@ var a = [
          {
             "company" :{
                 "name":"",
+                "titile":"",
+                "shortDescription":"",
                 "registrationNumber": "",
                 "registeredYear":"2015"
             },
@@ -17,13 +19,15 @@ var a = [
                 "officeAddress" : "",
                 "landlineNumber":"",
                 "mobileNumber":"",
+                "emailId":""
 
              },
              "website":"",
              "aboutCompany":"",
              "aboutBusiness":"",
              "gallery" :{
-                "images":""
+                "image":[{"name":"url"},
+                        {"name":"url"}]
              },
              "products" :{
                 "name" : "",
@@ -34,16 +38,22 @@ var a = [
                 { "name" : "","description" : "" }
              ],
         	 "brandImageIcon" : "1",
-        	 "copyright" : ""
+        	 "copyright" : "",
+             "applicationType":"",
+             "Category":"",
+             "Type":"",
+             "Item":"",
+             "Summary":""
+
          }
 	];
 
 app.controller('onetouchCtrl', ['$scope', '$http', function ($scope, $http) {
 	$scope.productList = a;
 
-    $scope.pageTitle="One Touch Apps";
-    $scope.pageHeader="One Touch Apps";
-    $scope.pageSubHeader="in 5 Minues";
+    $scope.pageTitle="Apps";
+    $scope.pageHeader="Apps";
+    $scope.pageSubHeader="";
 
 
 }]);
