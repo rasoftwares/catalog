@@ -3,18 +3,18 @@ var app = angular.module('onetouchApp', ['ngRoute']);
 
 var a = [
          {
-            "company" :{
+            "company" : {
                 "name":"",
                 "titile":"",
                 "shortDescription":"",
                 "registrationNumber": "",
                 "registeredYear":"2015"
             },
-        	 "owner":{
+        	 "owner": {
                 "name":"",
                 "photograph" : ""
              },
-             "contact" :{
+             "contact" : {
                 "registeredAddress" : "",
                 "officeAddress" : "",
                 "landlineNumber":"",
