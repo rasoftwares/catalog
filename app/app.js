@@ -19,11 +19,52 @@ app.config(['$routeProvider', function($routeProvider){
 // Routing logic ends
 
 
-app.controller('appController', ['$scope', '$http', function ($scope, $http) {
-	   $scope.productList = info.product;
 
-    $scope.pageTitle="Catalog";
-    $scope.pageHeader="Product Catalog";
+app.controller('appController', ['$scope', '$http','$filter', function ($scope,$http,filteredListService,$filter) {
+
+
+      $scope.pageTitle="Catalog";
+      $scope.pageHeader="product Catalog";
+      $scope.currentPage = 0;
+      $scope.itemsPerPage = 8;
+
+      $scope.productList = info.product;
+      for (var i = 0; i < $scope.productList.length; i++) {
+                        if (i % $scope.itemsPerPage === 0) {
+                            $scope.productList[Math.floor(i / $scope.itemsPerPage)] = [ $scope.productList[i] ];
+                        } else {
+                            $scope.productList[Math.floor(i / $scope.itemsPerPage)].push($scope.productList[i]);
+                        }
+                    }
+                    $scope.range = function (start, end) {
+                        var ret = [];
+                        if (!end) {
+                            end = start;
+                            start = 0;
+                        }
+                        for (var i = start; i < end/$scope.itemsPerPage; i++) {
+                            ret.push(i);
+                        }
+                        return ret;
+                    };
+
+                    $scope.prevPage = function () {
+                        if ($scope.currentPage > 0) {
+                            $scope.currentPage--;
+                        }
+                    };
+
+                    $scope.nextPage = function () {
+                        if ($scope.currentPage < $scope.productList.length/$scope.itemsPerPage- 1) {
+                            $scope.currentPage++;
+                        }
+                    };
+
+                    $scope.setPage = function () {
+                        $scope.currentPage = this.n;
+                    }
+
+
 
 
 }]);
