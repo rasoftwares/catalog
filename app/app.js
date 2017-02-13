@@ -19,137 +19,52 @@ app.config(['$routeProvider', function($routeProvider){
 // Routing logic ends
 
 
-var a = {
-    "company": {
-        "name": "AVRS Designer Sarees",
-        "title": "",
-        "registrationno": "",
-        "registrationyear": "",
-        "shortdescription": "",
-        "owner": {
-            "name": "",
-            "photograph": ""
-        }
-    },
-    "Contact": {
-        "registeredaddress": "",
-        "officeaddress": "",
-        "landlinenumber": "",
-        "mobilenumber": "",
-        "emailid": ""
-    },
-    "website": {
-        "websiteid": "",
-        "aboutcompany": "",
-        "aboutbussiness": ""
-    },
-    "gallery": [{
-        "image": ""
-    }, {
-        "image": ""
-    }, {
-        "image": ""
-    }],
-    "product": [{
-        "id": "1",
-        "name": "Saree",
-        "image": "1",
-        "price": "1750",
-        "discount": "500",
-        "type": "cotton"
-    },  {
-            "id" :"1",
-             "name" :"Saree",
-             "image" : "1",
-             "price" :"1750",
-             "discount":"500",
-             "type" : "cotton"
-         },
-         {
-             "id" :"2",
-             "name" :"Halfsaree",
-             "image" : "2",
-             "price" :"1750",
-             "discount":"500",
-             "type" : " cotton"
 
-       },
-         {
-             "id" :"3",
-             "name" :"Halfsaree",
-             "image" : "3",
-             "price" :"2750",
-             "discount":"500",
-             "type" : " cotton "
+app.controller('appController', ['$scope', '$http','$filter', function ($scope,$http,filteredListService,$filter) {
 
-       },
 
-        {
-             "id" :"4",
-             "name" :"Halfsaree",
-             "image" : "4",
-             "price" :"5750",
-             "discount":"500",
-             "type" : " cotton "
+      $scope.pageTitle="Catalog";
+      $scope.pageHeader="product Catalog";
+      $scope.currentPage = 0;
+      $scope.itemsPerPage = 8;
 
-       },
-         {
-             "id" :"5","name" :"Halfsaree",
-             "image" : "2",
-             "price" :"1750",
-             "discount":"500",
-             "type" : " fancy"
+      $scope.productList = info.product;
+      for (var i = 0; i < $scope.productList.length; i++) {
+                        if (i % $scope.itemsPerPage === 0) {
+                            $scope.productList[Math.floor(i / $scope.itemsPerPage)] = [ $scope.productList[i] ];
+                        } else {
+                            $scope.productList[Math.floor(i / $scope.itemsPerPage)].push($scope.productList[i]);
+                        }
+                    }
+                    $scope.range = function (start, end) {
+                        var ret = [];
+                        if (!end) {
+                            end = start;
+                            start = 0;
+                        }
+                        for (var i = start; i < end/$scope.itemsPerPage; i++) {
+                            ret.push(i);
+                        }
+                        return ret;
+                    };
 
-       },
-         {
-             "id" :"6","name" :"Halfsaree",
-             "image" : "5",
-             "price" :"9550",
-             "discount":"500",
-             "type" : "working "
+                    $scope.prevPage = function () {
+                        if ($scope.currentPage > 0) {
+                            $scope.currentPage--;
+                        }
+                    };
 
-       },
-         {
-             "id" :"7","name" :"Halfsaree",
-             "image" : "4",
-             "price" :"7750",
-             "discount":"500",
-             "type" : "fancy"
+                    $scope.nextPage = function () {
+                        if ($scope.currentPage < $scope.productList.length/$scope.itemsPerPage- 1) {
+                            $scope.currentPage++;
+                        }
+                    };
 
-       },
-         {
-             "id" :"8","name" :"Halfsaree",
-             "image" : "2",
-             "price" :"2750",
-             "discount":"500",
-             "type" : "cotton"
-        }
-,
-         {
-             "id" :"9","name" :"Chudithar",
-             "image" : "2",
-             "price" :"1000",
-             "discount":"200",
-             "type" : "cotton chudithar"
-        }],
-    "services": {
-        "servicename": "",
-        "description": "",
-        "brandimageicon": "",
-        "copyright": "",
-        "applicationtype": "",
-        "category": "",
-        "type": "",
-        "item": "",
-        "summary": ""
-    }
-};
+                    $scope.setPage = function () {
+                        $scope.currentPage = this.n;
+                    }
 
-app.controller('appController', ['$scope', '$http', function ($scope, $http) {
-	   $scope.productList = a.product;
 
-    $scope.pageTitle="Catalog";
-    $scope.pageHeader="Product Catalog";
-    
+
 
 }]);
