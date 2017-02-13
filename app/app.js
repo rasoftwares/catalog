@@ -9,8 +9,7 @@ app.config(['$routeProvider', function($routeProvider){
 
   $routeProvider
     .when('/',{ templateUrl: src_dir +'home.html'})
-    .when('/settings',{ templateUrl: src_dir +'settings.html'})
-    .when('/gendral',{ templateUrl: src_dir +'gendral.html'})
+    .when('/general',{ templateUrl: src_dir +'general.html'})
     .when('/about',{ templateUrl: src_dir +'about.html'})
     .when('/cart',{ templateUrl: src_dir +'cart.html'})
     .otherwise({redirectTo: '/'});

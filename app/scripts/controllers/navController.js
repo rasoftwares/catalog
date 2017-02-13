@@ -4,7 +4,7 @@ angular.module('catalogApp').controller('navController', function($scope){
 
   /* Dynamic menu and it's properties */
   $scope.menuItems = [{"name":"Home", "url": "/", "onClick":"home", "visible" : false},
-                    {"name":"Settings", "url": "settings", "onClick":"settings", "visible" : true},
+                    {"name":"Settings", "url": "", "onClick":"", "visible" : true},
                     {"name":"List", "url": "/list", "onClick":"list", "visible" :false},
                     {"name":"View", "url": "/view", "onClick":"view", "visible" :false}
              ];
