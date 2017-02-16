@@ -24,10 +24,13 @@ app.controller('appController', ['$scope', '$http','$filter', function ($scope,$
 
       $scope.pageTitle="Catalog";
       $scope.pageHeader="product Catalog";
+      //  $scope.subHeader=info.company.name;
+      //$scope.companyName=info.company.name;
       $scope.currentPage = 0;
       $scope.itemsPerPage = 8;
 
       $scope.productList = info.product;
+
       for (var i = 0; i < $scope.productList.length; i++) {
                         if (i % $scope.itemsPerPage === 0) {
                             $scope.productList[Math.floor(i / $scope.itemsPerPage)] = [ $scope.productList[i] ];
