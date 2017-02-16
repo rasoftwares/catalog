@@ -15,7 +15,7 @@ $scope.contactofficeAddress=info.Contact.officeaddress;
 $scope.contactlandlineNumber=info.Contact.landlinenumber;
 $scope.contactmobileNumber=info.Contact.mobilenumber;
 $scope.contactemailId=info.Contact.emailid;
-<!--About-->
+<!--About -->
 $scope.websiteWebsite=info.website.websiteid;
 $scope.websiteaboutCompany=info.website.aboutcompany;
 
