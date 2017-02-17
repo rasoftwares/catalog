@@ -1,5 +1,51 @@
-<div class="container" ng-controller="generalController">
-<!--<style>
+<div class="container-fluid" ng-controller="generalController">
+
+<h3> Application Name : {{appName}} </h3><br>
+<form id="form">
+<h4> Company Details</h4>
+<div>
+  <table class='table'>
+    <tr>
+      <td> Name </td>
+      <td> <input type='field'  placeholder="{{companyName}}" disabled ></td>
+      <td> Title </td>
+      <td> <input type='field'  placeholder ="{{companyTitle}}" disabled></td>
+      <td> Registration No </td>
+        <td> <input type='field'  placeholder ="{{companyregistrationNo}}" disabled></td>
+      <td> Registration Year </td>
+        <td> <input type='field'  placeholder ="{{companyregistrationYear}}" disabled></td>
+      </tr>
+      <tr>
+        <td> Owner Name </td>
+          <td> <input type='field'  placeholder ="{{companyownerName}}" disabled></td>
+          <td> Photograph </td>
+            <td> <input type='file'  placeholder ="{{companyphotograph}}" disabled></td>
+            <td> Short Description </td>
+            <td colspan="4"><textarea style="width:500px; height:100px;" inputtype=""  placeholder="{{companyshortDescription}}" ></textarea></td>
+
+              </textarea></td>  </tr>
+</table>
+</div>
+<h4>Contact Details</h4>
+<div>
+  <table class='table'>
+    <tr>
+      <td> Registered Address </td>
+      <td colspan="2"><textarea style="width:500px; height:100px;"  inputtype="" placeholder ="{{contactregisterdAddress}}" ></textarea></td></tr>
+      <tr>
+      <td> Office Address </td>
+      <td colspan="2"><textarea style="width:500px; height:100px;" inputtype=""  placeholder ="{{contactofficeAddress}}" ></textarea></td></tr>
+      <tr>
+      <td> Landline  </td>
+      <td> <input type='field'  placeholder ="{{contactlandlineNumber}}" disabled></td>
+      <tr><td> Mobile  </td>
+      <td> <input type='field'  placeholder ="{{contactmobileNumber}}" disabled></td></tr>
+    </tr>
+      <tr><td>EmailId</td>
+          <td> <input type='field'  placeholder ="{{contactemailId}}" disabled></td></tr>
+        </table></div>
+
+<style>
 .funkyradio div {
   clear: both;
   overflow: hidden;
@@ -108,54 +154,8 @@
   color: #fff;
   background-color: #5bc0de;
 }
-</style>-->
-
-<h3> Application Name : {{appName}} </h3><br>
-
-<button class="btn btn-success"><strong>Update</strong> </button><br>
-  <form id="form">
-
-<h4> Company Details</h4>
-<div>
-  <table class='table'>
-    <tr>
-      <td> Name </td>
-      <td> <input type='field'  placeholder="{{companyName}}" disabled ></td>
-      <td> Title </td>
-      <td> <input type='field'  placeholder ="{{companyTitle}}" disabled></td>
-      <td> Registration No </td>
-        <td> <input type='field'  placeholder ="{{companyregistrationNo}}" disabled></td>
-      <td> Registration Year </td>
-        <td> <input type='field'  placeholder ="{{companyregistrationYear}}" disabled></td>
-      </tr>
-      <tr>
-        <td> Owner Name </td>
-          <td> <input type='field'  placeholder ="{{companyownerName}}" disabled></td>
-          <td> Photograph </td>
-            <td> <input type='file'  placeholder ="{{companyphotograph}}" disabled></td>
-            <td> Short Description </td>
-              <td> <textarea disabled<  input type='field'  placeholder ="{{companyshortDescription}}" >
-              </textarea></td>  </tr>
-</table>
-</div>
-<h4>Contact Details</h4>
-<div>
-  <table class='table'>
-    <tr>
-      <td> Registered Address </td>
-      <td> <textarea disabled< input type='field'  placeholder="{{contactregisterdAddress}}"></textarea></td>
-      <td> Office Address </td>
-      <td> <textarea disabled< input type='field'  placeholder ="{{contactofficeAddress}}"></textarea></td>
-      <td> Landline  </td>
-      <td> <input type='field'  placeholder ="{{contactlandlineNumber}}" disabled></td>
-      <td> Mobile  </td>
-      <td> <input type='field'  placeholder ="{{contactmobileNumber}}" disabled></td>
-      </tr>
-      <tr><td>EmailId</td>
-          <td> <input type='field'  placeholder ="{{contactemailId}}" disabled></td></tr>
-        </table></div>
-</form>
-<!--<div class="col-md-4">
+</style>
+<div class="col-md-4">
      <h4>Select No of Page settings</h4>
       <div class="funkyradio">
         <div class="funkyradio-default">
@@ -183,4 +183,5 @@
             <label for="radio6">show 100 Records</label>
         </div>
     </div>
-</div>-->
+</div>
+</form>
