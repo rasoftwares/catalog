@@ -3,6 +3,8 @@ $scope.pageHeader="general Page Settings";
 $scope.appName="CatalogApp";
 <!--Company-->
 $scope.companyName=info.company.name;
+//$scope.companyName="sun microsystems";
+
 $scope.companyTitle=info.company.title;
 $scope.companyregistrationNo=info.company.registrationno;
 $scope.companyregistrationYear=info.company.registrationyear;

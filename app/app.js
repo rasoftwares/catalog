@@ -24,12 +24,18 @@ app.controller('appController', ['$scope', '$http','$filter', function ($scope,$
 
       $scope.pageTitle="Catalog";
       $scope.pageHeader="Product Catalog";
+      $scope.search_title="Go";
+      $scope.enableSearch = false;
+      $scope.menuItems = [{"name":"Home", "url": "/", "onClick":"home", "visible" : true},
+                        {"name":"Settings", "url": "", "onClick":"", "visible" : true},
+                      {"name":"cart", "url": "/cart", "onClick":"cart", "visible" :true}
+
+                 ];
       //  $scope.subHeader=info.company.name;
       //$scope.companyName=info.company.name;
       $scope.currentPage = 0;
       $scope.itemsPerPage = 8;
-
-      $scope.productList = info.product;
+     $scope.productList = info.product;
 
       for (var i = 0; i < $scope.productList.length; i++) {
             if (i % $scope.itemsPerPage === 0) {
