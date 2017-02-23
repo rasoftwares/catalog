@@ -23,7 +23,7 @@ app.controller('appController', ['$scope', '$http','$filter', function ($scope,$
 
 
       $scope.pageTitle="Catalog";
-      $scope.pageHeader="product Catalog";
+      $scope.pageHeader="Product Catalog";
       //  $scope.subHeader=info.company.name;
       //$scope.companyName=info.company.name;
       $scope.currentPage = 0;
@@ -32,41 +32,37 @@ app.controller('appController', ['$scope', '$http','$filter', function ($scope,$
       $scope.productList = info.product;
 
       for (var i = 0; i < $scope.productList.length; i++) {
-                        if (i % $scope.itemsPerPage === 0) {
-                            $scope.productList[Math.floor(i / $scope.itemsPerPage)] = [ $scope.productList[i] ];
-                        } else {
-                            $scope.productList[Math.floor(i / $scope.itemsPerPage)].push($scope.productList[i]);
-                        }
-                    }
-                    $scope.range = function (start, end) {
-                        var ret = [];
-                        if (!end) {
-                            end = start;
-                            start = 0;
-                        }
-                        for (var i = start; i < end/$scope.itemsPerPage; i++) {
-                            ret.push(i);
-                        }
-                        return ret;
-                    };
+            if (i % $scope.itemsPerPage === 0) {
+                $scope.productList[Math.floor(i / $scope.itemsPerPage)] = [ $scope.productList[i] ];
+            } else {
+                $scope.productList[Math.floor(i / $scope.itemsPerPage)].push($scope.productList[i]);
+            }
+        }
+      $scope.range = function (start, end) {
+          var ret = [];
+          if (!end) {
+              end = start;
+              start = 0;
+          }
+          for (var i = start; i < end/$scope.itemsPerPage; i++) {
+              ret.push(i);
+          }
+          return ret;
+      };
 
-                    $scope.prevPage = function () {
-                        if ($scope.currentPage > 0) {
-                            $scope.currentPage--;
-                        }
-                    };
+      $scope.prevPage = function () {
+          if ($scope.currentPage > 0) {
+              $scope.currentPage--;
+          }
+      };
 
-                    $scope.nextPage = function () {
-                        if ($scope.currentPage < $scope.productList.length/$scope.itemsPerPage- 1) {
-                            $scope.currentPage++;
-                        }
-                    };
+    $scope.nextPage = function () {
+        if ($scope.currentPage < $scope.productList.length/$scope.itemsPerPage- 1) {
+            $scope.currentPage++;
+        }
+    };
 
-                    $scope.setPage = function () {
-                        $scope.currentPage = this.n;
-                    }
-
-
-
-
+    $scope.setPage = function () {
+        $scope.currentPage = this.n;
+    }
 }]);
