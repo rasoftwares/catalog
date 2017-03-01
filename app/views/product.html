@@ -1,0 +1,79 @@
+<style>
+.table td.tdRight {
+  text-align: right;
+}
+.table td.tdCenter {
+  text-align: center;
+}
+.table-nonfluid {
+   width: auto;
+}
+</style>
+﻿<p class="text-info">
+    <img ng-src="images/{{product.image}}.jpg"  alt="{{product.name}}"/>
+    {{product.name}} {{product.description}}<br />
+</p>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span8">
+
+            <!-- product info -->
+            <table class="table table-bordered">
+
+                <tr class="well">
+                    <td class="tdRight" colspan="2" >
+                        <a href="index.html#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
+                            <i class="icon-shopping-cart" />
+                            <b>{{cart.getTotalCount()}}</b> items Rs.<b>{{cart.getTotalPrice()}}</b>
+                            <span ng-show="cart.getTotalCount(product.image) > 0"><br />this item is in the cart</span>
+                        </a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="tdCenter"><b>Price</b></td>
+                    <td class="tdCenter">Rs.{{product.price |currency:"":2 }}</td>
+
+                </tr>
+                                <tr class="well">
+                    <td class="tdRight" colspan="3" >
+                        <a href="index.html#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
+                            <i class="icon-shopping-cart" />
+                            <b>{{cart.getTotalCount()}}</b> items Rs. <b>{{cart.getTotalPrice() |currency:"":2}}</b>
+                            <span ng-show="cart.getTotalCount(product.image) > 0"><br />this item is in the cart</span>
+                        </a>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+
+        <!-- buttons -->
+        <div class="span4">
+            <button
+                class="btn btn-block btn-success"
+                ng-click="cart.addItem(product.image, product.name, product.price, 1)">
+                <i class="icon-shopping-cart icon-white" /> Add Cart
+            </button>
+            <button
+                class="btn btn-block btn-danger"
+                ng-click="cart.addItem(product.image, product.name, product.price, -10000)"
+                ng-disabled="cart.getTotalCount(product.image) < 1">
+                <i class="icon-trash icon-white" /> Remove Cart
+            </button>
+            <button
+                class="btn btn-block btn-primary"
+                onclick="window.location.href='index.html#/cart'">
+                <i class="icon-chevron-Right" /> Go To Cart
+            </button>
+            <button
+                class="btn btn-block"
+                onclick="window.location.href=''">
+                <i class="icon-chevron-left" /> Back to
+            </button>
+
+
+        </div>
+    </div>
+</div>
