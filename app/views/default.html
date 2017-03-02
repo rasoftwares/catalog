@@ -39,7 +39,7 @@
             <p>
             Price: Rs.{{ product.price|currency:"":2}}</p>
         <p>  Discount: Rs.{{ product.discount|currency:"":2}}</p>
-           <p><a href="" ng-click="cart.addItem(product.image, product.name, product.price, 1)" class="btn btn-success" role="button"> Add To <i class="icon-shopping-cart icon-white" /> <span class="glyphicon glyphicon" aria-hidden="true"></span></a>
+           <p><a href="" ng-click="cart.addItem(product.image, product.name, product.price, 1)" class="btn btn-success" role="button"> Add To <span class="glyphicon glyphicon-shopping-cart"></span>
               <a href="#/images/{{product.image}}" class="btn btn-warning" role="button">Details<span class="glyphicon glyphicon" aria-hidden="true"></span></a></p>
 
             <!--<a href="#" class="btn btn-warning" role="button"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a>-->
@@ -50,7 +50,7 @@
       </div>
     </div>
     <div>
-
+<div>
       <td>
               <div class="pagination pull-righ">
                    <ul>
@@ -68,14 +68,14 @@
                    </ul>
                </div>
            </td>
-
+</div>
 </div>
 
     <table class="table table-bordered">
     <tr class="well">
         <td class="tdRight" colspan="4">
             <a href="index.html#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
-                <i class="icon-shopping-cart" />
+                <span class="glyphicon glyphicon-shopping-cart"></span>
                 <b>{{cart.getTotalCount()}}</b> items Rs <b>{{cart.getTotalPrice() | currency:"":2}}</b>
             </a>
         </td>
