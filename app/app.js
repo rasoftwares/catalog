@@ -1,6 +1,5 @@
 var app = angular.module('catalogApp', ['ngRoute']);
 
-
 /* Routing logic of the app */
 app.config(['$routeProvider', function($routeProvider){
    var src_dir = "app/views/";
@@ -29,20 +28,7 @@ app.config(['$routeProvider', function($routeProvider){
       });
 }]);
 
-app.factory("DataService", function () {
 
-    // create store
-    var myStore = new store();
-
-    // create shopping cart
-    var myCart = new shoppingCart("CatalogApp");
-
-    // return data object with store and cart
-    return {
-        store: myStore,
-        cart: myCart
-    };
-});
 
 
 // Routing logic ends
@@ -50,6 +36,7 @@ app.factory("DataService", function () {
 
 
 app.controller('appController', ['$scope', '$http','$filter', function ($scope,$http,filteredListService,$filter) {
+
 
 
       $scope.pageTitle="Catalog";
@@ -61,6 +48,44 @@ app.controller('appController', ['$scope', '$http','$filter', function ($scope,$
                       {"name":"cart", "url": "/cart", "onClick":"cart", "visible" :true}
 
                  ];
+                 $scope.currentPage = 0;
+                 $scope.itemsPerPage = 8;
+                 $scope.products= info.product;
+
+                 for (var i = 0; i < $scope.products.length; i++) {
+                       if (i % $scope.itemsPerPage === 0) {
+                           $scope.products[Math.floor(i / $scope.itemsPerPage)] = [ $scope.products[i] ];
+                       } else {
+                           $scope.products[Math.floor(i / $scope.itemsPerPage)].push($scope.products[i]);
+                       }
+                   }
+                 $scope.range = function (start, end) {
+                     var ret = [];
+                     if (!end) {
+                         end = start;
+                         start = 0;
+                     }
+                     for (var i = start; i < end/$scope.itemsPerPage; i++) {
+                         ret.push(i);
+                     }
+                     return ret;
+                 };
+
+                 $scope.prevPage = function () {
+                     if ($scope.currentPage > 0) {
+                         $scope.currentPage--;
+                     }
+                 };
+
+               $scope.nextPage = function () {
+                   if ($scope.currentPage < $scope.products.length/$scope.itemsPerPage- 1) {
+                       $scope.currentPage++;
+                   }
+               };
+
+               $scope.setPage = function () {
+                   $scope.currentPage = this.n;
+               }
       //  $scope.subHeader=info.company.name;
       //$scope.companyName=info.company.name;
 

@@ -19,9 +19,10 @@
                 <!-- header -->
                 <tr class="well">
                     <td><b>Item</b></td>
+                    <td class="tdCenter"><b>Item Price</b></td>
                     <td class="tdCenter"><b>Quantity</b></td>
                     <td class="tdRight"><b>Price</b></td>
-                    <td />
+                  <td />
                 </tr>
 
                 <!-- empty cart message -->
@@ -33,7 +34,10 @@
 
                 <!-- cart items -->
                 <tr ng-repeat="item in cart.items | orderBy:'name'">
-                    <td>{{item.name}}</td>
+                    <td><img src="images/{{item.image}}.jpg" heigtht="50" width="50">
+                    <p>{{item.name}}</p></td>
+                    <td class="tdCenter">Rs.{{item.price|currency:"":2}}</td>
+
                     <td class="tdCenter">
                       <div class="input-append">
                         <!-- use type=tel instead of  to prevent spinners -->
@@ -53,8 +57,8 @@
                     </td>
                     <td class="tdRight"> Rs.{{item.price * item.quantity |currency:"":2}}</td>
                     <td class="tdCenter" title="remove from cart">
-                        <a href="" ng-click="cart.addItem(item.image, item.name, item.price, -10000000)" >
-                            <i class="icon-remove" />
+                        <a href="" ng-click="cart.addItem(item.image, item.name, item.price, -10000000)"
+                            class="btn btn-warning" role="button">Delete<span class="glyphicon glyphicon" aria-hidden="true"></span>
                         </a>
                     </td>
                 </tr>
@@ -62,9 +66,12 @@
                 <!-- footer -->
                 <tr class="well">
                     <td><b>Total</b></td>
+                    <td></td>
+                    <!--<td class="tdCenter"><b>Item Price</b></td>-->
                     <td class="tdCenter"><b>{{cart.getTotalCount()}}</b></td>
                     <td class="tdRight"><b> Rs.{{cart.getTotalPrice() | currency:"":2}}</b></td>
                     <td />
+                    
                 </tr>
             </table>
         </div>
@@ -75,7 +82,7 @@
                 <button
                     class="btn btn-block"
                     onclick="window.location.href='index.html'">
-                    <i class="icon-chevron-left" /> back to home
+                    <i class="icon-chevron-left" /> back to Shop
                 </button>
                 <button
                     class="btn btn-block btn-danger"

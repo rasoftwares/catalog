@@ -1,51 +1,29 @@
-﻿function storeController($scope, $routeParams, DataService) {
-//pagination
-  $scope.currentPage = 0;
-  $scope.itemsPerPage = 8;
-  $scope.products= info.product;
+app.controller('StoreController', function($scope){
 
-  for (var i = 0; i < $scope.products.length; i++) {
-        if (i % $scope.itemsPerPage === 0) {
-            $scope.products[Math.floor(i / $scope.itemsPerPage)] = [ $scope.products[i] ];
-        } else {
-            $scope.products[Math.floor(i / $scope.itemsPerPage)].push($scope.products[i]);
-        }
-    }
-  $scope.range = function (start, end) {
-      var ret = [];
-      if (!end) {
-          end = start;
-          start = 0;
-      }
-      for (var i = start; i < end/$scope.itemsPerPage; i++) {
-          ret.push(i);
-      }
-      return ret;
-  };
 
-  $scope.prevPage = function () {
-      if ($scope.currentPage > 0) {
-          $scope.currentPage--;
-      }
-  };
+});
+app.factory("DataService", function () {
+    // create store
+    var myStore = new store();
 
-$scope.nextPage = function () {
-    if ($scope.currentPage < $scope.products.length/$scope.itemsPerPage- 1) {
-        $scope.currentPage++;
-    }
-};
+    // create cart
+    var myCart = new shoppingCart("CatalogApp");
 
-$scope.setPage = function () {
-    $scope.currentPage = this.n;
-}
-    // get store and cart from service
-    $scope.store = DataService.store;
-    $scope.cart = DataService.cart;
+    // return data object with store and cart
+    return {
+        store: myStore,
+        cart: myCart
+    };
+});
 
-    // use routing to pick the selected product
-    if ($routeParams.productimage != null) {
-        $scope.product = $scope.store.getProduct($routeParams.productimage);
-    }
+function storeController($scope, $routeParams, DataService) {
+  $scope.store = DataService.store;
+  $scope.cart  = DataService.cart;
+
+  // use routing to pick the selected product
+  if ($routeParams.productimage != null) {
+      $scope.product = $scope.store.getProduct($routeParams.productimage);
+  }
 }
 
 //products from info.js
@@ -173,6 +151,18 @@ function product(image, name, description, price,discount) {
     shoppingCart.prototype.clearItems = function () {
         this.items = [];
         this.saveItems();
+    }
+
+    shoppingCart.prototype.toNumber = function (value) {
+        value = value * 1;
+        return isNaN(value) ? 0 : value;
+    }
+
+    function cartItem(image, name, price, quantity) {
+        this.image = image;
+        this.name = name;
+        this.price = price * 1;
+        this.quantity = quantity * 1;
     }
 
     // define checkout parameters
@@ -309,17 +299,6 @@ function product(image, name, description, price,discount) {
             });
         }
     }*/
-    shoppingCart.prototype.toNumber = function (value) {
-        value = value * 1;
-        return isNaN(value) ? 0 : value;
-    }
-
-    function cartItem(image, name, price, quantity) {
-        this.image = image;
-        this.name = name;
-        this.price = price * 1;
-        this.quantity = quantity * 1;
-    }
 
 
     //----------------------------------------------------------------
