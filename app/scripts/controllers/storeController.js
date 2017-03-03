@@ -1,6 +1,7 @@
 app.controller('StoreController', function($scope){
 
-
+$scope.companyName=info.company.name;
+$scope.products =info.product;
 });
 app.factory("DataService", function () {
     // create store
@@ -21,8 +22,9 @@ function storeController($scope, $routeParams, DataService) {
   $scope.cart  = DataService.cart;
 
   // use routing to pick the selected product
+
   if ($routeParams.productimage != null) {
-      $scope.product = $scope.store.getProduct($routeParams.productimage);
+
   }
 }
 
@@ -36,6 +38,7 @@ store.prototype.getProduct = function (image) {
             return this.products[i];
     }
     return null;
+
 }
 
 
