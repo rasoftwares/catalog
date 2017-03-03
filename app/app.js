@@ -38,7 +38,7 @@ app.config(['$routeProvider', function($routeProvider){
 app.controller('appController', ['$scope', '$http','$filter', function ($scope,$http,filteredListService,$filter) {
 
 
-
+    //  $scope.total=cart.getTotalCount;
       $scope.pageTitle="Catalog";
       $scope.pageHeader="Product Catalog";
       $scope.search_title="Go";

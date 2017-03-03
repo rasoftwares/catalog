@@ -13,7 +13,7 @@
     <div class="row-fluid">
         <div class="span8">
 
-            <!-- items -->
+            <!-- items -->{{cart.getTotalCount()}}
             <table class="table table-bordered">
 
                 <!-- header -->
@@ -71,7 +71,7 @@
                     <td class="tdCenter"><b>{{cart.getTotalCount()}}</b></td>
                     <td class="tdRight"><b> Rs.{{cart.getTotalPrice() | currency:"":2}}</b></td>
                     <td />
-                    
+
                 </tr>
             </table>
         </div>
@@ -94,19 +94,19 @@
 
             <br /><br />
 
-  <!--          <p class="text-info">
+         <p class="text-info">
                 <button
                     class="btn btn-block btn-primary"
                     ng-click="cart.checkout('PayPal')"
                     ng-disabled="cart.getTotalCount() < 1">
                     <i class="icon-ok icon-white" /> check out using PayPal
                 </button>
-                <button
+              <!--  <button
                     class="btn btn-block btn-primary"
                     ng-click="cart.checkout('Google')"
                     ng-disabled="cart.getTotalCount() < 1">
                     <i class="icon-ok icon-white" /> check out using Google
-                </button>
+                </button>-->
             </p>
 
             <br /><br />
@@ -116,15 +116,15 @@
                     class="btn btn-block btn-link"
                     ng-click="cart.checkout('PayPal')"
                     ng-disabled="cart.getTotalCount() < 1" >
-                    <img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" alt="checkout PayPal"/>
+                  <!--  <img src="https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" alt="checkout PayPal"/>-->
                 </button>
                 <button
                     class="btn btn-block btn-link"
                     ng-click="cart.checkout('Google')"
                     ng-disabled="cart.getTotalCount() < 1" >
-                    <img src="https://checkout.google.com/buttons/checkout.gif?w=168&h=44&style=white&variant=text" alt="checkoutGoogle"/>
+                  <!--  <img src="https://checkout.google.com/buttons/checkout.gif?w=168&h=44&style=white&variant=text" alt="checkoutGoogle"/>-->
                 </button>
-            </p>-->
+            </p>
         </div>
     </div>
 </div>

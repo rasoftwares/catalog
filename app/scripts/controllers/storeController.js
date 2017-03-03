@@ -1,5 +1,5 @@
 app.controller('StoreController', function($scope){
-
+//  $scope.total = 10;
 
 });
 app.factory("DataService", function () {
@@ -8,6 +8,19 @@ app.factory("DataService", function () {
 
     // create cart
     var myCart = new shoppingCart("CatalogApp");
+    myCart.addCheckoutParameters("PayPal", "bernardo.castilho-facilitator@gmail.com");
+
+    // https://developers.google.com/commerce/wallet/digital/training/getting-started/merchant-setup
+    myCart.addCheckoutParameters("Google", "500640663394527",
+        {
+            ship_method_name_1: "UPS Next Day Air",
+            ship_method_price_1: "20.00",
+            ship_method_currency_1: "USD",
+            ship_method_name_2: "UPS Ground",
+            ship_method_price_2: "15.00",
+            ship_method_currency_2: "USD"
+        }
+    );
 
     // return data object with store and cart
     return {
@@ -19,16 +32,18 @@ app.factory("DataService", function () {
 function storeController($scope, $routeParams, DataService) {
   $scope.store = DataService.store;
   $scope.cart  = DataService.cart;
-
+  //$scope.total = getTotalCount();
+  //$scope.total = 10;
   // use routing to pick the selected product
   if ($routeParams.productimage != null) {
       $scope.product = $scope.store.getProduct($routeParams.productimage);
   }
+
 }
 
 //products from info.js
 function store() {
-    this.products = info.product
+    this.products = info.product;
   }
 store.prototype.getProduct = function (image) {
     for (var i = 0; i < this.products.length; i++) {
@@ -166,7 +181,7 @@ function product(image, name, description, price,discount) {
     }
 
     // define checkout parameters
-  /*  shoppingCart.prototype.addCheckoutParameters = function (serviceName, merchantID, options) {
+    shoppingCart.prototype.addCheckoutParameters = function (serviceName, merchantID, options) {
 
         // check parameters
         if (serviceName != "PayPal" && serviceName != "Google") {
@@ -183,13 +198,13 @@ function product(image, name, description, price,discount) {
     // check out
     shoppingCart.prototype.checkout = function (serviceName, clearCart) {
 
-        // select serviceName if we have to
+
         if (serviceName == null) {
             var p = this.checkoutParameters[Object.keys(this.checkoutParameters)[0]];
             serviceName = p.serviceName;
         }
 
-        // sanity
+
         if (serviceName == null) {
             throw "Use the 'addCheckoutParameters' method to define at least one checkout service.";
         }
@@ -211,8 +226,7 @@ function product(image, name, description, price,discount) {
         }
     }
 
-    // check out using PayPal
-    // for details see:
+
     // www.paypal.com/cgi-bin/webscr?cmd=p/pdn/howto_checkout-outside
     shoppingCart.prototype.checkoutPayPal = function (parms, clearCart) {
 
@@ -250,10 +264,7 @@ function product(image, name, description, price,discount) {
         form.remove();
     }
 
-    // check out using Google Wallet
-    // for details see:
-    // developers.google.com/checkout/developer/Google_Checkout_Custom_Cart_How_To_HTML
-    // developers.google.com/checkout/developer/interactive_demo
+
     shoppingCart.prototype.checkoutGoogle = function (parms, clearCart) {
 
         // global data
@@ -272,9 +283,7 @@ function product(image, name, description, price,discount) {
 
         // build form
         var form = $('<form/></form>');
-        // NOTE: in production projects, use the checkout.google url below;
-        // for debugging/testing, use the sandbox.google url instead.
-        //form.attr("action", "https://checkout.google.com/api/checkout/v2/merchantCheckoutForm/Merchant/" + parms.merchantID);
+
         form.attr("action", "https://sandbox.google.com/checkout/api/checkout/v2/checkoutForm/Merchant/" + parms.merchantID);
         form.attr("method", "POST");
         form.attr("style", "display:none;");
@@ -298,18 +307,17 @@ function product(image, name, description, price,discount) {
                 }
             });
         }
-    }*/
+    }
 
 
     //----------------------------------------------------------------
     // checkout parameters (one per supported payment service)
     //
-  /*  function checkoutParameters(serviceName, merchantID, options) {
+   function checkoutParameters(serviceName, merchantID, options) {
         this.serviceName = serviceName;
         this.merchantID = merchantID;
         this.options = options;
-    }*/
+    }
 
     //----------------------------------------------------------------
     // items in the cart
-    //

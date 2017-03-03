@@ -28,7 +28,7 @@
 
 
     <div class="row">
-    <div class="col-md-3 col-xs-6 col-sm-3 col-lg-3" ng-repeat="product in store.products[currentPage]| filter:searchTxt">
+    <div class="col-md-3 col-xs-6 col-sm-3 col-lg-3" ng-repeat="product in products[currentPage]| filter:searchTxt">
       <div >
         <div class="thumbnail">
         <img ng-src="images/{{product.image}}.jpg" alt="{{product.name}}" /
@@ -52,7 +52,7 @@
     <div>
 <div>
       <td>
-              <div class="pagination pull-righ">
+              <div class="pagination pull-right">
                    <ul>
                        <li ng-class="{disabled: currentPage == 0}">
                            <a href ng-click="prevPage()"><<</a>
