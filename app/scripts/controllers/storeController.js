@@ -1,6 +1,12 @@
 app.controller('StoreController', function($scope){
+<<<<<<< HEAD
 //  $scope.total = 10;
 
+=======
+
+$scope.companyName=info.company.name;
+$scope.products =info.product;
+>>>>>>> e6d966ac79fc9be7ee91823b28d23cf130b2a60e
 });
 app.factory("DataService", function () {
     // create store
@@ -35,8 +41,9 @@ function storeController($scope, $routeParams, DataService) {
   //$scope.total = getTotalCount();
   //$scope.total = 10;
   // use routing to pick the selected product
+
   if ($routeParams.productimage != null) {
-      $scope.product = $scope.store.getProduct($routeParams.productimage);
+
   }
 
 }
@@ -51,6 +58,7 @@ store.prototype.getProduct = function (image) {
             return this.products[i];
     }
     return null;
+
 }
 
 
