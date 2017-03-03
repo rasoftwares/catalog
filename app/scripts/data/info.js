@@ -35,37 +35,37 @@ var info={
 		"type": "cotton"
 	}, {
 		"discount": "500",
-		"id": "1",
-		"image": "1",
-		"name": "Saree",
-		"price": "1750",
+		"id": "2",
+		"image": "2",
+		"name": "chudi",
+		"price": "1500",
 		"type": "cotton"
 	}, {
 		"discount": "500",
 		"id": "1",
-		"image": "1",
+		"image": "3",
 		"name": "worksaree",
 		"price": "1750",
 		"type": "cotton"
 	}, {
 		"discount": "500",
 		"id": "1",
-		"image": "1",
+		"image": "4",
 		"name": "cotton",
 		"price": "1750",
 		"type": "cotton"
 	}, {
 		"discount": "500",
 		"id": "1",
-		"image": "1",
+		"image": "5",
 		"name": "cotton",
-		"price": "1750",
+		"price": "1700",
 		"type": "cotton"
 	}, {
 		"discount": "500",
 		"id": "1",
-		"image": "1",
-		"name": "saree",
+		"image": "5",
+		"name": "chudi",
 		"price": "1750",
 		"type": "cotton"
 	}, {

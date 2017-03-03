@@ -9,7 +9,7 @@
   <!--meta http-equiv="refresh" content="10"-->
 
   <script src="components/jquery.min.js"></script>
-
+<!--  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet" type="text/css"/>-->
   <link rel="stylesheet" href="components/bootstrap/css/bootstrap.min.css">
   <!--link rel="stylesheet" href="components/bootstrap/css/bootstrap-theme.css"-->
 
@@ -23,6 +23,10 @@
   <script type="text/javascript" src="app/scripts/controllers/homeController.js"></script>
   <script type="text/javascript" src="app/scripts/controllers/navController.js"></script>
   <script type="text/javascript" src="app/scripts/controllers/generalController.js"></script>
+  <script type="text/javascript" src="app/scripts/controllers/storeController.js"></script>
+
+
+
 
   <style type="text/css">
   <style type="text/css">
@@ -52,8 +56,8 @@
              <li class="" ng-repeat="i in menuItems"><a href="#!{{i.url}}" ng-if="i.visible">{{ i.name }} </a></li>
         </ul>-->
       <ul class="nav navbar-nav navbar-right">
-      <li><a href="#/home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-      <li><a href="#/cart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
+      <li><a href="#/default"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+      <li><a href="#/cart"><span class="glyphicon glyphicon-shopping-cart"></span>Cart</a></li>
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown">
         <span class="glyphicon glyphicon-cog"></span>Settings</a>
