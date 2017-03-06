@@ -1,9 +1,6 @@
 app.controller('StoreController', function($scope){
 
 //  $scope.total = 10;
-
-
-
 $scope.companyName=info.company.name;
 $scope.products =info.product;
 
@@ -43,7 +40,7 @@ function storeController($scope, $routeParams, DataService) {
   // use routing to pick the selected product
 
   if ($routeParams.productimage != null) {
-
+        $scope.product = $scope.store.getProduct($routeParams.productimage);
   }
 
 }
