@@ -53,12 +53,12 @@
         <div class="span4">
             <button
                 class="btn btn-block btn-success"
-                ng-click="cart.addItem(product.image, product.name, product.price, 1)">
+                ng-click="cart.addItem(product.id,product.image, product.name, product.price, 1)">
                 <i class="icon-shopping-cart icon-white" /> Add Cart
             </button>
             <button
                 class="btn btn-block btn-danger"
-                ng-click="cart.addItem(product.image, product.name, product.price, -10000)"
+                ng-click="cart.addItem(product.id,product.image, product.name, product.price, -10000)"
                 ng-disabled="cart.getTotalCount(product.image) < 1">
                 <i class="icon-trash icon-white" /> Remove From Cart
             </button>

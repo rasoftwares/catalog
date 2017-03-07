@@ -1,5 +1,6 @@
 var app = angular.module('catalogApp', ['ngRoute']);
 
+
 /* Routing logic of the app */
 app.config(['$routeProvider', function($routeProvider){
    var src_dir = "app/views/";
@@ -37,8 +38,14 @@ app.config(['$routeProvider', function($routeProvider){
 
 app.controller('appController', ['$scope', '$http','$filter', function ($scope,$http,filteredListService,$filter) {
 
+  function appController($scope, $routeParams, DataService) {
+    $scope.store = DataService.store;
+    $scope.cart  = DataService.cart;
+    $scope.total = $scope.cart.getTotalCount();
 
-    //  $scope.total=cart.getTotalCount;
+    }
+
+      //$scope.total=total;
       $scope.pageTitle="Catalog";
       $scope.pageHeader="Product Catalog";
       $scope.search_title="Go";

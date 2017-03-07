@@ -1,10 +1,12 @@
 app.controller('StoreController', function($scope){
-
+  $scope.total=10;
 //  $scope.total = 10;
 $scope.companyName=info.company.name;
 $scope.products =info.product;
 
 });
+
+
 app.factory("DataService", function () {
     // create store
     var myStore = new store();
@@ -35,8 +37,9 @@ app.factory("DataService", function () {
 function storeController($scope, $routeParams, DataService) {
   $scope.store = DataService.store;
   $scope.cart  = DataService.cart;
-  //$scope.total = getTotalCount();
-  //$scope.total = 10;
+  $scope.total = $scope.cart.getTotalCount();
+  //DataService.total= $scope.cart.getTotalCount();
+
   // use routing to pick the selected product
 
   if ($routeParams.productimage != null) {
@@ -59,7 +62,8 @@ store.prototype.getProduct = function (image) {
 }
 
 
-function product(image, name, description, price,discount) {
+function product(id,image, name, description, price,discount) {
+    this.id = id;
     this.image = image;
     this.name = name;
     this.description = description;
@@ -95,8 +99,8 @@ function product(image, name, description, price,discount) {
                 var items = JSON.parse(items);
                 for (var i = 0; i < items.length; i++) {
                     var item = items[i];
-                    if (item.image != null && item.name != null && item.price != null && item.quantity != null) {
-                        item = new cartItem(item.image, item.name, item.price, item.quantity);
+                    if (item.id != null && item.image != null && item.name != null && item.price != null && item.quantity != null) {
+                        item = new cartItem(item.id,item.image, item.name, item.price, item.quantity);
                         this.items.push(item);
                     }
                 }
@@ -115,7 +119,7 @@ function product(image, name, description, price,discount) {
     }
 
     // adds an item to the cart
-    shoppingCart.prototype.addItem = function (image, name, price,quantity) {
+    shoppingCart.prototype.addItem = function (id,image, name, price,quantity) {
         quantity = this.toNumber(quantity);
         if (quantity != 0) {
 
@@ -123,7 +127,7 @@ function product(image, name, description, price,discount) {
             var found = false;
             for (var i = 0; i < this.items.length && !found; i++) {
                 var item = this.items[i];
-                if (item.image == image) {
+                if (item.id == id) {
                     found = true;
                     item.quantity = this.toNumber(item.quantity + quantity);
                     if (item.quantity <= 0) {
@@ -134,7 +138,7 @@ function product(image, name, description, price,discount) {
 
             // new item, add now
             if (!found) {
-                var item = new cartItem(image, name, price,quantity);
+                var item = new cartItem(id,image, name, price,quantity);
                 this.items.push(item);
             }
 
@@ -144,11 +148,11 @@ function product(image, name, description, price,discount) {
     }
 
     // get the total price for all items currently in the cart
-    shoppingCart.prototype.getTotalPrice = function (image) {
+    shoppingCart.prototype.getTotalPrice = function (id) {
         var total = 0;
         for (var i = 0; i < this.items.length; i++) {
             var item = this.items[i];
-            if (image == null || item.image == image) {
+            if (id == null || item.id == id) {
                 total += this.toNumber(item.quantity * item.price);
             }
         }
@@ -156,11 +160,11 @@ function product(image, name, description, price,discount) {
     }
 
     // get the total price for all items currently in the cart
-    shoppingCart.prototype.getTotalCount = function (image) {
+    shoppingCart.prototype.getTotalCount = function (id) {
         var count = 0;
         for (var i = 0; i < this.items.length; i++) {
             var item = this.items[i];
-            if (image == null || item.image == image) {
+            if (id == null || item.id == id) {
                 count += this.toNumber(item.quantity);
             }
         }
@@ -178,7 +182,8 @@ function product(image, name, description, price,discount) {
         return isNaN(value) ? 0 : value;
     }
 
-    function cartItem(image, name, price, quantity) {
+    function cartItem(id,image, name, price, quantity) {
+        this.id = id;
         this.image = image;
         this.name = name;
         this.price = price * 1;
@@ -201,7 +206,7 @@ function product(image, name, description, price,discount) {
     }
 
     // check out
-    shoppingCart.prototype.checkout = function (serviceName, clearCart) {
+      shoppingCart.prototype.checkout = function (serviceName, clearCart) {
 
 
         if (serviceName == null) {
@@ -240,7 +245,7 @@ function product(image, name, description, price,discount) {
             cmd: "_cart",
             business: parms.merchantID,
             upload: "1",
-            rm: "2",
+            Rs: "2",
             charset: "utf-8"
         };
 
@@ -256,7 +261,7 @@ function product(image, name, description, price,discount) {
 
         // build form
         var form = $('<form/></form>');
-        form.attr("action", "https://www.paypal.com/cgi-bin/webscr");
+        form.attr("action", "https://www.sandbox.paypal.com/nvp");
         form.attr("method", "POST");
         form.attr("style", "display:none;");
         this.addFormFields(form, data);

@@ -36,153 +36,153 @@ var info={
 	}, {
 		"discount": "500",
 		"id": "2",
-		"image": "2",
+		"image": "1",
 		"name": "chudi",
 		"price": "1500",
 		"type": "cotton"
 	}, {
 		"discount": "500",
-		"id": "1",
-		"image": "3",
+		"id": "3",
+		"image": "5",
 		"name": "worksaree",
 		"price": "1750",
 		"type": "cotton"
 	}, {
 		"discount": "500",
-		"id": "1",
+		"id": "4",
 		"image": "4",
 		"name": "cotton",
 		"price": "1750",
 		"type": "cotton"
 	}, {
 		"discount": "500",
-		"id": "1",
+		"id": "5",
 		"image": "5",
 		"name": "cotton",
 		"price": "1700",
 		"type": "cotton"
 	}, {
 		"discount": "500",
-		"id": "1",
-		"image": "5",
+		"id": "6",
+		"image": "3",
 		"name": "chudi",
 		"price": "1750",
 		"type": "cotton"
 	}, {
 		"discount": "500",
-		"id": "1",
+		"id": "7",
 		"image": "1",
 		"name": "saree",
 		"price": "1750",
 		"type": "cotton"
 	}, {
 		"discount": "500",
-		"id": "1",
+		"id": "8",
 		"image": "1",
 		"name": "saree",
 		"price": "1750",
 		"type": "cotton"
 	}, {
 		"discount": "500",
-		"id": "1",
+		"id": "9",
 		"image": "1",
 		"name": "saree",
 		"price": "1750",
 		"type": "cotton"
 	}, {
 		"discount": "500",
-		"id": "1",
+		"id": "10",
 		"image": "1",
 		"name": "saree",
 		"price": "1750",
 		"type": "cotton"
 	}, {
 		"discount": "500",
-		"id": "1",
+		"id": "11",
 		"image": "1",
 		"name": "saree",
 		"price": "1750",
 		"type": "cotton"
 	}, {
 		"discount": "500",
-		"id": "1",
+		"id": "12",
 		"image": "1",
 		"name": "saree",
 		"price": "1750",
 		"type": "cotton"
 	}, {
 		"discount": "500",
-		"id": "1",
+		"id": "13",
 		"image": "1",
 		"name": "saree",
 		"price": "1750",
 		"type": "cotton"
 	}, {
 		"discount": "500",
-		"id": "1",
+		"id": "14",
 		"image": "1",
 		"name": "saree",
 		"price": "1750",
 		"type": "cotton"
 	}, {
 		"discount": "500",
-		"id": "1",
+		"id": "15",
 		"image": "1",
 		"name": "saree",
 		"price": "1750",
 		"type": "cotton"
 	}, {
 		"discount": "500",
-		"id": "1",
+		"id": "16",
 		"image": "1",
 		"name": "saree",
 		"price": "1750",
 		"type": "cotton"
 	}, {
 		"discount": "500",
-		"id": "1",
+		"id": "17",
 		"image": "1",
 		"name": "saree",
 		"price": "1750",
 		"type": "cotton"
 	}, {
 		"discount": "500",
-		"id": "1",
+		"id": "18",
 		"image": "1",
 		"name": "saree",
 		"price": "1750",
 		"type": "cotton"
 	}, {
 		"discount": "500",
-		"id": "1",
+		"id": "19",
 		"image": "1",
 		"name": "saree",
 		"price": "1750",
 		"type": "cotton"
 	}, {
 		"discount": "500",
-		"id": "1",
+		"id": "20",
 		"image": "1",
 		"name": "saree",
 		"price": "1750",
 		"type": "cotton"
 	}, {
 		"discount": "500",
-		"id": "1",
+		"id": "21",
 		"image": "1",
 		"name": "",
 		"price": "1750",
 		"type": "cotton"
 	}, {
 		"discount": "500",
-		"id": "1",
+		"id": "22",
 		"image": "1",
 		"price": "1750",
 		"name": "saree",
 		"type": "cotton"
 	}, {
 		"discount": "500",
-		"id": "1",
+		"id": "23",
 		"image": "1",
 		"name": "saree",
 		"price": "1750",
