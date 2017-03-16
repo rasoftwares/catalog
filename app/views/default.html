@@ -39,8 +39,8 @@
             <p>
             Price: Rs.{{ product.price|currency:"":2}}</p>
         <p>  Discount: Rs.{{ product.discount|currency:"":2}}</p>
-           <p><a href="" ng-click="cart.addItem(product.id,product.image, product.name, product.price, 1)" class="btn btn-success" role="button"> Add To <span class="glyphicon glyphicon-shopping-cart"></span>
-              <a href="#/images/{{product.image}}" class="btn btn-warning" role="button">Details<span class="glyphicon glyphicon" aria-hidden="true"></span></a></p>
+           <p><a href="" ng-click="cart.addItem(product.id,product.image, product.name, product.price, 1)" class="btn btn-success" role="button"><span class="glyphicon glyphicon-plus"></span>
+              <a href="#/images/{{product.image}}" class="btn btn-warning" role="button"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></a></p>
 
             <!--<a href="#" class="btn btn-warning" role="button"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a>-->
              </p>
