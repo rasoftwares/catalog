@@ -12,7 +12,7 @@
 <div class="container-fluid">
 ﻿<p class="text-info">
     <img ng-src="images/{{product.image}}.jpg" height="100" width="100" alt="{{product.name}}"/>
-    {{product.name}} {{product.description}}<br />
+    <br />
 </p>
 
 
@@ -55,13 +55,13 @@
             <button
                 class="btn btn-block btn-success"
                 ng-click="cart.addItem(product.id,product.image, product.name, product.price, 1)">
-                <i class="icon-shopping-cart icon-white" /> Add Cart
+                <span class="glyphicon glyphicon-shopping-cart" /> Add Cart</span>
             </button>
             <button
                 class="btn btn-block btn-danger"
                 ng-click="cart.addItem(product.id,product.image, product.name, product.price, -10000)"
                 ng-disabled="cart.getTotalCount(product.image) < 1">
-                <i class="icon-trash icon-white" /> Remove From Cart
+                <span class="glyphicon glyphicon-trash"></span> Remove From Cart
             </button>
             <button
                 class="btn btn-block btn-primary"
@@ -73,8 +73,6 @@
                 onclick="window.location.href=''">
                 <i class="icon-chevron-left" /> Back to
             </button>
-
-
         </div>
     </div>
 </div>
