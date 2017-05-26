@@ -38,26 +38,32 @@ app.config(['$routeProvider', function($routeProvider){
 
 app.controller('appController', ['$scope', '$http','$filter', function ($scope,$http,filteredListService,$filter) {
 
-  function appController($scope, $routeParams, DataService) {
-    $scope.store = DataService.store;
-    $scope.cart  = DataService.cart;
-    $scope.total = $scope.cart.getTotalCount();
+  $scope.pageTitle="Catalog";
+  $scope.pageHeader="Product Catalog";
+  $scope.search_title="Go";
+  $scope.enableSearch = false;
+/*$scope.menuItems = [{"name":"Home", "url": "/", "onClick":"home", "visible" : true},
+                    {"name":"Settings", "url": "", "onClick":"", "visible" : true},
+                    {"name":"cart", "url": "/cart", "onClick":"cart", "visible" :true}
 
-    }
+             ];*/
 
+
+  var firebaseURL = 'https://onetouch-d52d4.firebaseio.com/';
+  var environment = 'dev';
+  var dataStore = 'request';
+  var authKey = 've8PdopndzS3yD35SMF6KAd4VKpHQuxUotXNeHGw';
+  var data = "-KkjanVwZAC_ugR42cPm/product";
+  var appURL = firebaseURL + environment + "/" + dataStore + "/" + data +".json?auth="+ authKey;
+  //var all_appURL = firebaseURL + environment + "/" + dataStore ;
+//https://onetouch-d52d4.firebaseio.com/dev/request/-KkidwRuc2de6rQwz-mO/product.json?auth=ve8PdopndzS3yD35SMF6KAd4VKpHQuxUotXNeHGw
+
+   $http.get(appURL).
+   then(function(response) {
+   $scope.products =response.data;
       //$scope.total=total;
-      $scope.pageTitle="Catalog";
-      $scope.pageHeader="Product Catalog";
-      $scope.search_title="Go";
-      $scope.enableSearch = false;
-      $scope.menuItems = [{"name":"Home", "url": "/", "onClick":"home", "visible" : true},
-                        {"name":"Settings", "url": "", "onClick":"", "visible" : true},
-                      {"name":"cart", "url": "/cart", "onClick":"cart", "visible" :true}
-
-                 ];
-                 $scope.currentPage = 0;
-                 $scope.itemsPerPage = 8;
-                 $scope.products= info.product;
+     $scope.currentPage = 0;
+     $scope.itemsPerPage = 8;
 
                  for (var i = 0; i < $scope.products.length; i++) {
                        if (i % $scope.itemsPerPage === 0) {
@@ -94,6 +100,6 @@ app.controller('appController', ['$scope', '$http','$filter', function ($scope,$
                    $scope.currentPage = this.n;
                }
       //  $scope.subHeader=info.company.name;
-      //$scope.companyName=info.company.name;
-
+      //$scope.companyName=info.company.name;*/
+});
 }]);

@@ -1,8 +1,5 @@
-app.controller('StoreController', function($scope){
-  $scope.total=10;
-//  $scope.total = 10;
+app.controller('StoreController', function($scope,$http){
 $scope.companyName=info.company.name;
-$scope.products =info.product;
 
 });
 
@@ -34,7 +31,8 @@ app.factory("DataService", function () {
     };
 });
 
-function storeController($scope, $routeParams, DataService) {
+function storeController($scope, $routeParams, $http,DataService){
+
   $scope.store = DataService.store;
   $scope.cart  = DataService.cart;
   $scope.total = $scope.cart.getTotalCount();
@@ -48,9 +46,8 @@ function storeController($scope, $routeParams, DataService) {
 
 }
 
-//products from info.js
-function store() {
-    this.products = info.product;
+function store($scope,$http) {
+    this.products = "" ;
   }
 store.prototype.getProduct = function (image) {
     for (var i = 0; i < this.products.length; i++) {
