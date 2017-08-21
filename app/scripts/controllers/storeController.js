@@ -1,9 +1,3 @@
-app.controller('StoreController', function($scope,$http){
-$scope.companyName=info.company.name;
-
-});
-
-
 app.factory("DataService", function () {
     // create store
     var myStore = new store();
@@ -31,23 +25,22 @@ app.factory("DataService", function () {
     };
 });
 
+
+
 function storeController($scope, $routeParams, $http,DataService){
 
   $scope.store = DataService.store;
   $scope.cart  = DataService.cart;
-  $scope.total = $scope.cart.getTotalCount();
+  //$scope.total = $scope.cart.getTotalCount();
   //DataService.total= $scope.cart.getTotalCount();
 
   // use routing to pick the selected product
 
-  if ($routeParams.productimage != null) {
-        $scope.product = $scope.store.getProduct($routeParams.productimage);
-  }
+
 
 }
 
 function store($scope,$http) {
-    this.products = "" ;
   }
 store.prototype.getProduct = function (image) {
     for (var i = 0; i < this.products.length; i++) {
@@ -166,6 +159,7 @@ function product(id,image, name, description, price,discount) {
             }
         }
         return count;
+
     }
 
     // clear the cart
@@ -317,14 +311,79 @@ function product(id,image, name, description, price,discount) {
     }
 
 
-    //----------------------------------------------------------------
+
     // checkout parameters (one per supported payment service)
-    //
    function checkoutParameters(serviceName, merchantID, options) {
         this.serviceName = serviceName;
         this.merchantID = merchantID;
         this.options = options;
     }
 
-    //----------------------------------------------------------------
-    // items in the cart
+
+
+app.controller('StoreController', function($scope,$http,DataService){
+    $scope.companyName=info.company.name;
+    $scope.pageTitle="Catalog";
+    $scope.pageHeader="Product Catalog";
+    $scope.search_title="Go";
+    $scope.enableSearch = false;
+    $scope.store = DataService.store;
+    $scope.cart  = DataService.cart;
+
+    var firebaseURL = 'https://onetouch-d52d4.firebaseio.com/';
+    var environment = 'dev';
+    var dataStore = 'request';
+    var authKey = 've8PdopndzS3yD35SMF6KAd4VKpHQuxUotXNeHGw';
+    var data = "-KkjanVwZAC_ugR42cPm/product";
+    var appURL = firebaseURL + environment + "/" + dataStore + "/" + data +".json?auth="+ authKey;
+    //var all_appURL = firebaseURL + environment + "/" + dataStore ;
+    //https://onetouch-d52d4.firebaseio.com/dev/request/-KkidwRuc2de6rQwz-mO/product.json?auth=ve8PdopndzS3yD35SMF6KAd4VKpHQuxUotXNeHGw
+
+     $http.get(appURL).
+     then(function(response) {
+    $scope.products =response.data;
+        //$scope.total=total;
+       $scope.currentPage = 0;
+       $scope.itemsPerPage = 8;
+
+
+                   for (var i = 0; i < $scope.products.length; i++) {
+                         if (i % $scope.itemsPerPage === 0) {
+                             $scope.products[Math.floor(i / $scope.itemsPerPage)] = [ $scope.products[i] ];
+                         } else {
+                             $scope.products[Math.floor(i / $scope.itemsPerPage)].push($scope.products[i]);
+                         }
+                     }
+                   $scope.range = function (start, end) {
+                       var ret = [];
+                       if (!end) {
+                           end = start;
+                           start = 0;
+                       }
+                       for (var i = start; i < end/$scope.itemsPerPage; i++) {
+                           ret.push(i);
+                       }
+                       return ret;
+                   };
+
+                   $scope.prevPage = function () {
+                       if ($scope.currentPage > 0) {
+                           $scope.currentPage--;
+                       }
+                   };
+
+                 $scope.nextPage = function () {
+                     if ($scope.currentPage < $scope.products.length/$scope.itemsPerPage- 1) {
+                         $scope.currentPage++;
+                     }
+                 };
+
+                 $scope.setPage = function () {
+                     $scope.currentPage = this.n;
+                 }
+        //  $scope.subHeader=info.company.name;
+        //$scope.companyName=info.company.name;*/
+    });
+
+
+    });
