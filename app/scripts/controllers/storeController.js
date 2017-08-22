@@ -1,12 +1,15 @@
+app.controller('storeController', function($scope,$http,$filter,DataService){
+  $scope.store = DataService.store;
+  $scope.cart  = DataService.cart;
+
+});
+
+
+
 app.factory("DataService", function () {
-    // create store
     var myStore = new store();
-
-    // create cart
-    var myCart = new shoppingCart("CatalogApp");
+    var myCart = new shoppingCart();
     myCart.addCheckoutParameters("PayPal", "bernardo.castilho-facilitator@gmail.com");
-
-    // https://developers.google.com/commerce/wallet/digital/training/getting-started/merchant-setup
     myCart.addCheckoutParameters("Google", "500640663394527",
         {
             ship_method_name_1: "UPS Next Day Air",
@@ -18,7 +21,6 @@ app.factory("DataService", function () {
         }
     );
 
-    // return data object with store and cart
     return {
         store: myStore,
         cart: myCart
@@ -27,21 +29,14 @@ app.factory("DataService", function () {
 
 
 
-function storeController($scope, $routeParams, $http,DataService){
-
-  $scope.store = DataService.store;
-  $scope.cart  = DataService.cart;
-  //$scope.total = $scope.cart.getTotalCount();
-  //DataService.total= $scope.cart.getTotalCount();
-
-  // use routing to pick the selected product
 
 
+
+
+function store($scope,$http) {
 
 }
 
-function store($scope,$http) {
-  }
 store.prototype.getProduct = function (image) {
     for (var i = 0; i < this.products.length; i++) {
         if (this.products[i].image == image)
@@ -66,8 +61,6 @@ function product(id,image, name, description, price,discount) {
         this.clearCart = false;
         this.checkoutParameters = {};
         this.items = [];
-
-
         this.loadItems();
 
 
@@ -96,13 +89,11 @@ function product(id,image, name, description, price,discount) {
                 }
             }
             catch (err) {
-                // ignore errors while loading...
-            }
+              }
         }
     }
 
-    // save items to local storage
-    shoppingCart.prototype.saveItems = function () {
+     shoppingCart.prototype.saveItems = function () {
         if (localStorage != null && JSON != null) {
             localStorage[this.cartName + "_items"] = JSON.stringify(this.items);
         }
@@ -311,79 +302,9 @@ function product(id,image, name, description, price,discount) {
     }
 
 
-
     // checkout parameters (one per supported payment service)
    function checkoutParameters(serviceName, merchantID, options) {
         this.serviceName = serviceName;
         this.merchantID = merchantID;
         this.options = options;
     }
-
-
-
-app.controller('StoreController', function($scope,$http,DataService){
-    $scope.companyName=info.company.name;
-    $scope.pageTitle="Catalog";
-    $scope.pageHeader="Product Catalog";
-    $scope.search_title="Go";
-    $scope.enableSearch = false;
-    $scope.store = DataService.store;
-    $scope.cart  = DataService.cart;
-
-    var firebaseURL = 'https://onetouch-d52d4.firebaseio.com/';
-    var environment = 'dev';
-    var dataStore = 'request';
-    var authKey = 've8PdopndzS3yD35SMF6KAd4VKpHQuxUotXNeHGw';
-    var data = "-KkjanVwZAC_ugR42cPm/product";
-    var appURL = firebaseURL + environment + "/" + dataStore + "/" + data +".json?auth="+ authKey;
-    //var all_appURL = firebaseURL + environment + "/" + dataStore ;
-    //https://onetouch-d52d4.firebaseio.com/dev/request/-KkidwRuc2de6rQwz-mO/product.json?auth=ve8PdopndzS3yD35SMF6KAd4VKpHQuxUotXNeHGw
-
-     $http.get(appURL).
-     then(function(response) {
-    $scope.products =response.data;
-        //$scope.total=total;
-       $scope.currentPage = 0;
-       $scope.itemsPerPage = 8;
-
-
-                   for (var i = 0; i < $scope.products.length; i++) {
-                         if (i % $scope.itemsPerPage === 0) {
-                             $scope.products[Math.floor(i / $scope.itemsPerPage)] = [ $scope.products[i] ];
-                         } else {
-                             $scope.products[Math.floor(i / $scope.itemsPerPage)].push($scope.products[i]);
-                         }
-                     }
-                   $scope.range = function (start, end) {
-                       var ret = [];
-                       if (!end) {
-                           end = start;
-                           start = 0;
-                       }
-                       for (var i = start; i < end/$scope.itemsPerPage; i++) {
-                           ret.push(i);
-                       }
-                       return ret;
-                   };
-
-                   $scope.prevPage = function () {
-                       if ($scope.currentPage > 0) {
-                           $scope.currentPage--;
-                       }
-                   };
-
-                 $scope.nextPage = function () {
-                     if ($scope.currentPage < $scope.products.length/$scope.itemsPerPage- 1) {
-                         $scope.currentPage++;
-                     }
-                 };
-
-                 $scope.setPage = function () {
-                     $scope.currentPage = this.n;
-                 }
-        //  $scope.subHeader=info.company.name;
-        //$scope.companyName=info.company.name;*/
-    });
-
-
-    });
