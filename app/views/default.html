@@ -37,9 +37,10 @@
             <h3> {{product.name}} </h3>
             <p><a href="#/images/{{product.image}}"><b>{{product.name}}</b></a><br />
             {{product.description}}
-            <p>
-            Price: Rs.{{ product.price|currency:"":2}}</p>
-        <p>  Discount: Rs.{{ product.discount|currency:"":2}}</p>
+            <p> Price: Rs.{{product.price--product.discount|currency:"":2}}</p>
+            <p> Discount: Rs.{{ product.discount|currency:"":2}}</p>
+            <p> Net Price: Rs.{{ product.price|currency:"":2}}</p>
+
            <p><a href="" ng-click="cart.addItem(product.id,product.image, product.name, product.price, 1)" class="btn btn-success" role="button"><span class="glyphicon glyphicon-plus"></span>
               <a href="#/images/{{product.image}}" class="btn btn-warning" role="button"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></a></p>
 
