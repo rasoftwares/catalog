@@ -15,7 +15,7 @@ app.config(['$routeProvider', function($routeProvider){
       when('/default', {
         templateUrl: src_dir +'default.html',
       }).
-      when('/images/:productimage', {
+      when('/images/:id', {
         templateUrl: src_dir +'product.html',
       }).
       when('/cart', {
@@ -57,7 +57,7 @@ app.controller('appController', function($scope,$http,$filter,$routeParams,DataS
     $scope.pageHeader="Product Catalog";
     $scope.search_title="Go";
     $scope.enableSearch = false;
-  //  $scope.store = DataService.store;
+  //$scope.store = DataService.store;
     $scope.cart  = DataService.cart;
 
     var firebaseURL = 'https://onetouch-d52d4.firebaseio.com/';
@@ -71,22 +71,20 @@ app.controller('appController', function($scope,$http,$filter,$routeParams,DataS
      $http.get(appURL).
      then(function(response) {
       $scope.products = response.data;
-      //<---product.html----->
 
+      //<---product.html----->
       $scope.product = $scope.products;
-      $scope.getProduct = function (image) {
+      $scope.getProduct = function (id) {
           for (var i = 0; i < $scope.product.length; i++) {
-              if ($scope.product[i].image == image)
+              if ($scope.product[i].id == id)
                   return $scope.product[i];
           }
           return null;
 
       }
-      if ($routeParams.productimage != null) {
-          $scope.product = $scope.getProduct($routeParams.productimage);
+      if ($routeParams.id != null) {
+          $scope.product = $scope.getProduct($routeParams.id);
       }
-
-
 
       //pagination-->
 
@@ -129,6 +127,5 @@ app.controller('appController', function($scope,$http,$filter,$routeParams,DataS
         //  $scope.subHeader=info.company.name;
         //$scope.companyName=info.company.name;*/
     });
-
 
     });
