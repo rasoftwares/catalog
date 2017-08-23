@@ -51,13 +51,13 @@ app.config(['$routeProvider', function($routeProvider){
 
 
 
-app.controller('appController', function($scope,$http,$filter,DataService){
+app.controller('appController', function($scope,$http,$filter,$routeParams,DataService){
     $scope.companyName=info.company.name;
     $scope.pageTitle="Catalog";
     $scope.pageHeader="Product Catalog";
     $scope.search_title="Go";
     $scope.enableSearch = false;
-    $scope.store = DataService.store;
+  //  $scope.store = DataService.store;
     $scope.cart  = DataService.cart;
 
     var firebaseURL = 'https://onetouch-d52d4.firebaseio.com/';
@@ -70,11 +70,28 @@ app.controller('appController', function($scope,$http,$filter,DataService){
     //https://onetouch-d52d4.firebaseio.com/dev/request/-KkidwRuc2de6rQwz-mO/product.json?auth=ve8PdopndzS3yD35SMF6KAd4VKpHQuxUotXNeHGw
      $http.get(appURL).
      then(function(response) {
-      $scope.products =response.data;
+      $scope.products = response.data;
+      //<---product.html----->
+
+      $scope.product = $scope.products;
+      $scope.getProduct = function (image) {
+          for (var i = 0; i < $scope.product.length; i++) {
+              if ($scope.product[i].image == image)
+                  return $scope.product[i];
+          }
+          return null;
+
+      }
+      if ($routeParams.productimage != null) {
+          $scope.product = $scope.getProduct($routeParams.productimage);
+      }
+
+
+
+      //pagination-->
+
        $scope.currentPage = 0;
        $scope.itemsPerPage = 8;
-
-
                    for (var i = 0; i < $scope.products.length; i++) {
                          if (i % $scope.itemsPerPage === 0) {
                              $scope.products[Math.floor(i / $scope.itemsPerPage)] = [ $scope.products[i] ];

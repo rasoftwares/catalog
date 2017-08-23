@@ -1,13 +1,14 @@
-app.controller('storeController', function($scope,$http,$filter,DataService){
-  $scope.store = DataService.store;
+app.controller('storeController', function($scope,$http,$filter,$routeParams,DataService){
+//$scope.store = DataService.store;
   $scope.cart  = DataService.cart;
 
+  
 });
 
 
 
 app.factory("DataService", function () {
-    var myStore = new store();
+    //var myStore = new store();
     var myCart = new shoppingCart();
     myCart.addCheckoutParameters("PayPal", "bernardo.castilho-facilitator@gmail.com");
     myCart.addCheckoutParameters("Google", "500640663394527",
@@ -22,7 +23,7 @@ app.factory("DataService", function () {
     );
 
     return {
-        store: myStore,
+        //store: myStore,
         cart: myCart
     };
 });
@@ -31,30 +32,32 @@ app.factory("DataService", function () {
 
 
 
+//function store($scope,$http) {
+//this.products = $scope.products;
+//}
 
 
-function store($scope,$http) {
 
-}
 
-store.prototype.getProduct = function (image) {
-    for (var i = 0; i < this.products.length; i++) {
-        if (this.products[i].image == image)
-            return this.products[i];
+
+/*store.prototype.getProduct = function (image) {
+    for (var i = 0; i <  $scope.products.length; i++) {
+        if (  $scope.products[i].image == image)
+            return $scope.products[i];
     }
     return null;
 
-}
+}*/
 
 
-function product(id,image, name, description, price,discount) {
+/*function product(id,image, name, description, price,discount) {
     this.id = id;
     this.image = image;
     this.name = name;
     this.description = description;
     this.price = price;
     this.discount = discount;
-    }
+  }*/
 
     function shoppingCart(cartName) {
         this.cartName = cartName;
