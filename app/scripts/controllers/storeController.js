@@ -2,7 +2,7 @@ app.controller('storeController', function($scope,$http,$filter,$routeParams,Dat
 //$scope.store = DataService.store;
   $scope.cart  = DataService.cart;
 
-  
+
 });
 
 
@@ -85,8 +85,8 @@ app.factory("DataService", function () {
                 var items = JSON.parse(items);
                 for (var i = 0; i < items.length; i++) {
                     var item = items[i];
-                    if (item.id != null && item.image != null && item.name != null && item.price != null && item.quantity != null) {
-                        item = new cartItem(item.id,item.image, item.name, item.price, item.quantity);
+                    if (item.id != null && item.image != null && item.name != null && item.price != null && item.discout != null  && item.quantity != null) {
+                        item = new cartItem(item.id,item.image, item.name, item.price,item.discount,item.quantity);
                         this.items.push(item);
                     }
                 }
@@ -103,7 +103,7 @@ app.factory("DataService", function () {
     }
 
     // adds an item to the cart
-    shoppingCart.prototype.addItem = function (id,image, name, price,quantity) {
+    shoppingCart.prototype.addItem = function (id,image,name,price,discount,quantity) {
         quantity = this.toNumber(quantity);
         if (quantity != 0) {
 
@@ -115,14 +115,14 @@ app.factory("DataService", function () {
                     found = true;
                     item.quantity = this.toNumber(item.quantity + quantity);
                     if (item.quantity <= 0) {
-                        this.items.splice(i, 1);
+                        this.items.splice(i,1);
                     }
                 }
             }
 
             // new item, add now
             if (!found) {
-                var item = new cartItem(id,image, name, price,quantity);
+                var item = new cartItem(id,image,name,price,discount,quantity);
                 this.items.push(item);
             }
 
@@ -137,7 +137,7 @@ app.factory("DataService", function () {
         for (var i = 0; i < this.items.length; i++) {
             var item = this.items[i];
             if (id == null || item.id == id) {
-                total += this.toNumber(item.quantity * item.price);
+                total += this.toNumber(item.quantity *item.price);
             }
         }
         return total;
@@ -167,11 +167,12 @@ app.factory("DataService", function () {
         return isNaN(value) ? 0 : value;
     }
 
-    function cartItem(id,image, name, price, quantity) {
+    function cartItem(id,image, name, price,discount,quantity) {
         this.id = id;
         this.image = image;
         this.name = name;
-        this.price = price * 1;
+        this.price = (price-price*discount/100)* 1;
+        this.discount= discount;
         this.quantity = quantity * 1;
     }
 
@@ -273,6 +274,7 @@ app.factory("DataService", function () {
             data["item_description_" + ctr] = item.name;
             data["item_price_" + ctr] = item.price.toFixed(2);
             data["item_quantity_" + ctr] = item.quantity;
+            data["item_discount_" + ctr] = item.discount;
             data["item_merchant_id_" + ctr] = parms.merchantID;
         }
 

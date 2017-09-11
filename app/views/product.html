@@ -26,7 +26,7 @@
                     <td class="tdRight" colspan="2" >
                         <a href="index.html#/cart" title="go to shopping cart" ng-disabled="cart.getTotalCount() < 1">
                             <i class="icon-shopping-cart" />
-                            <b>{{cart.getTotalCount()}}</b> items Rs.<b>{{cart.getTotalPrice()}}</b>
+                            <b>{{cart.getTotalCount()}}</b> items Rs.<b>{{cart.getTotalPrice()|currency:"":2}}</b>
                             <span ng-show="cart.getTotalCount(product.image) > 0"><br />this item is in the cart</span>
                         </a>
                     </td>
@@ -34,7 +34,7 @@
 
                 <tr>
                     <td class="tdCenter"><b>Price</b></td>
-                    <td class="tdCenter">Rs.{{product.price |currency:"":2 }}</td>
+                    <td class="tdCenter">Rs.{{product.price-product.price*product.discount/100|currency:"":2 }}</td>
 
                 </tr>
                                 <tr class="well">
@@ -54,12 +54,12 @@
         <div class="span4">
             <button
                 class="btn btn-block btn-success"
-                ng-click="cart.addItem(product.id,product.image, product.name, product.price, 1)">
+                ng-click="cart.addItem(product.id,product.image, product.name, product.price,product.discount, 1)">
                 <span class="glyphicon glyphicon-shopping-cart" /> Add Cart</span>
             </button>
             <button
                 class="btn btn-block btn-danger"
-                ng-click="cart.addItem(product.id,product.image, product.name, product.price, -10000)"
+                ng-click="cart.addItem(product.id,product.image,product.name, product.price,product.discount, -10000)"
                 ng-disabled="cart.getTotalCount(product.image) < 1">
                 <span class="glyphicon glyphicon-trash"></span> Remove From Cart
             </button>

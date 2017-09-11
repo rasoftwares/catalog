@@ -64,7 +64,7 @@ app.controller('appController', function($scope,$http,$filter,$routeParams,DataS
     var environment = 'dev';
     var dataStore = 'request';
     var authKey = 've8PdopndzS3yD35SMF6KAd4VKpHQuxUotXNeHGw';
-    var data = "-KkjanVwZAC_ugR42cPm/product";
+    var data = "-KtQNH3Sf_ffvpoBLD-9/product";
     var appURL = firebaseURL + environment + "/" + dataStore + "/" + data +".json?auth="+ authKey;
     //var all_appURL = firebaseURL + environment + "/" + dataStore ;
     //https://onetouch-d52d4.firebaseio.com/dev/request/-KkidwRuc2de6rQwz-mO/product.json?auth=ve8PdopndzS3yD35SMF6KAd4VKpHQuxUotXNeHGw
@@ -72,7 +72,7 @@ app.controller('appController', function($scope,$http,$filter,$routeParams,DataS
      then(function(response) {
       $scope.products = response.data;
 
-      //<---product.html----->
+      //<---product.html using root with id----->
       $scope.product = $scope.products;
       $scope.getProduct = function (id) {
           for (var i = 0; i < $scope.product.length; i++) {
@@ -82,11 +82,12 @@ app.controller('appController', function($scope,$http,$filter,$routeParams,DataS
           return null;
 
       }
+
       if ($routeParams.id != null) {
           $scope.product = $scope.getProduct($routeParams.id);
       }
 
-      //pagination-->
+      /*<---pagination-->*/
 
        $scope.currentPage = 0;
        $scope.itemsPerPage = 8;
