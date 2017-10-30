@@ -57,6 +57,8 @@ app.controller('appController', function($scope,$http,$filter,$routeParams,DataS
     $scope.pageHeader="Product Catalog";
     $scope.search_title="Go";
     $scope.enableSearch = false;
+    $scope.currentPage = 0;
+    $scope.itemsPerPage = 8;
   //$scope.store = DataService.store;
     $scope.cart  = DataService.cart;
 
@@ -89,8 +91,8 @@ app.controller('appController', function($scope,$http,$filter,$routeParams,DataS
 
       /*<---pagination-->*/
 
-       $scope.currentPage = 0;
-       $scope.itemsPerPage = 8;
+
+
                    for (var i = 0; i < $scope.products.length; i++) {
                          if (i % $scope.itemsPerPage === 0) {
                              $scope.products[Math.floor(i / $scope.itemsPerPage)] = [ $scope.products[i] ];
@@ -125,7 +127,7 @@ app.controller('appController', function($scope,$http,$filter,$routeParams,DataS
                  $scope.setPage = function () {
                      $scope.currentPage = this.n;
                  }
-        //  $scope.subHeader=info.company.name;
+         //$scope.subHeader=info.company.name;
         //$scope.companyName=info.company.name;*/
     });
 
