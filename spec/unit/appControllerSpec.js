@@ -1,18 +1,18 @@
-describe('Application Controller ', function() {
+describe('Application Controller', function() {
 
 	var scope;
 	var ctrl;
 
-	beforeEach(module('catalogApp'));
+beforeEach(module('catalogApp'));
 
-	beforeEach(inject(function($rootScope, $controller){
+beforeEach(inject(function($rootScope, $controller){
 		scope = $rootScope.$new();
 		ctrl = $controller('appController',{
-			$scope: scope
+		$scope: scope
 		});
 	}));
 
-	describe('Configurations in app.js', function(){
+describe('Configurations', function(){
 		it('should define page title',function(){
 			expect(scope.pageTitle).toBe('Catalog');
 		});
@@ -25,28 +25,14 @@ describe('Application Controller ', function() {
 			expect(scope.enableSearch).toBe(false);
 		});
 
-		it('should have menuItems', function(){
-			expect(scope.menuItems.length).toBe(3);
+		it('should have search title', function(){
+			expect(scope.search_title).toBe('Go');
 		});
-		it('should validate the contents of menu items', function(){
-			var arr=['Home','Settings','cart'];
-			var mItems = scope.menuItems;
-			var flag = true;
-			_.each(mItems,function(value,idx,array){
-					_.each(arr,function(v,id,a){
-							if(v == value.name){
-								flag = true;
-							}
-					});
-					expect(flag).toBe(true);
-			});
-		it('should have currentPage', function(){
-			expect(scope.currentPage).toBe(0);
-		});
-		it('should have itemsPerPage', function(){
+
+		it('should have search title', function(){
 			expect(scope.itemsPerPage).toBe(8);
 		});
 
-	});
-	});
-		});
+
+});
+});
