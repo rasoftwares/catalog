@@ -1,8 +1,7 @@
 app.controller('storeController', function($scope,$http,$filter,$routeParams,DataService){
 //$scope.store = DataService.store;
   $scope.cart  = DataService.cart;
-
-
+  $scope.pageTitle="catalogApp";
 });
 
 
@@ -86,7 +85,7 @@ app.factory("DataService", function () {
                 for (var i = 0; i < items.length; i++) {
                     var item = items[i];
                     if (item.id != null && item.image != null && item.name != null && item.price != null && item.discout != null  && item.quantity != null) {
-                        item = new cartItem(item.id,item.image, item.name, item.price,item.discount,item.quantity);
+                        item = new cartItem(item.id,item.image, item.name,item.price,item.discount,item.quantity);
                         this.items.push(item);
                     }
                 }
