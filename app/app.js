@@ -48,9 +48,8 @@ app.controller('appController', function($scope, $http, $filter, $routeParams, D
     $scope.itemsPerPage = 8;
   //$scope.store = DataService.store;
     $scope.cart  = DataService.cart;
+    $scope.products=[];
 
-
-    $scope.products = [];
 
 
 
@@ -71,8 +70,9 @@ app.controller('appController', function($scope, $http, $filter, $routeParams, D
 
 
                             $scope.getProduct = function (id) {
+                              console.log($scope.product);
                                   for (var i = 0; i < $scope.product.length; i++) {
-                                      if ($scope.product[i].id == id)
+                                      if ($scope.products[i].id == id)
                                           return $scope.product[i];
                                   }
                                 return null;
@@ -80,7 +80,9 @@ app.controller('appController', function($scope, $http, $filter, $routeParams, D
                               if ($routeParams.id != null) {
                                   $scope.product = $scope.getProduct($routeParams.id);
                               }
-                                  //<---pagination-->
+
+
+                            //<---pagination-->
                                for (var i = 0; i < $scope.products.length; i++) {
                                      if (i % $scope.itemsPerPage === 0) {
                                          $scope.products[Math.floor(i / $scope.itemsPerPage)] = [ $scope.products[i] ];
@@ -118,7 +120,10 @@ app.controller('appController', function($scope, $http, $filter, $routeParams, D
                         }).catch(function(){
                             console.log("Failed");
                              $scope.status = 'Failed...';
-                        });
+                           });
+
+
     };
+
 
 });
