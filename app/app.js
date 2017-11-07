@@ -26,32 +26,19 @@ app.config(['$routeProvider', function($routeProvider){
       });
 }]);
 
-
-
-
 // Routing logic ends
-
-
-
 /*app.controller('appController', ['$scope', '$http','$filter', function ($scope,$http,filteredListService,$filter) {
-
 
 /*$scope.menuItems = [{"name":"Home", "url": "/", "onClick":"home", "visible" : true},
                     {"name":"Settings", "url": "", "onClick":"", "visible" : true},
                     {"name":"cart", "url": "/cart", "onClick":"cart", "visible" :true}
 
              ];
-
-
-
-
-
 }]);*/
+app.controller('appController', function($scope, $http, $filter, $routeParams, DataService){
+    //This debug flag enables, debugging details in the view layer.
+    $scope.debug = false;
 
-
-
-
-app.controller('appController', function($scope,$http,$filter,$routeParams,DataService){
     $scope.companyName=info.company.name;
     $scope.pageTitle="Catalog";
     $scope.pageHeader="Product Catalog";
@@ -62,73 +49,76 @@ app.controller('appController', function($scope,$http,$filter,$routeParams,DataS
   //$scope.store = DataService.store;
     $scope.cart  = DataService.cart;
 
-    var firebaseURL = 'https://onetouch-d52d4.firebaseio.com/';
-    var environment = 'dev';
-    var dataStore = 'request';
-    var authKey = 've8PdopndzS3yD35SMF6KAd4VKpHQuxUotXNeHGw';
-    var data = "-KtQNH3Sf_ffvpoBLD-9/product";
-    var appURL = firebaseURL + environment + "/" + dataStore + "/" + data +".json?auth="+ authKey;
+
+    $scope.products = [];
+
+
+
+    $scope.firebaseURL = 'https://onetouch-d52d4.firebaseio.com/';
+    $scope.environment = 'dev';
+    $scope.dataStore = 'request';
+    $scope.authKey = 've8PdopndzS3yD35SMF6KAd4VKpHQuxUotXNeHGw';
+    $scope.data = "-KtQNH3Sf_ffvpoBLD-9/product";
+    $scope.appURL = $scope.firebaseURL + $scope.environment + "/" + $scope.dataStore + "/" + $scope.data +".json?auth="+ $scope.authKey;
     //var all_appURL = firebaseURL + environment + "/" + dataStore ;
     //https://onetouch-d52d4.firebaseio.com/dev/request/-KkidwRuc2de6rQwz-mO/product.json?auth=ve8PdopndzS3yD35SMF6KAd4VKpHQuxUotXNeHGw
-     $http.get(appURL).
-     then(function(response) {
-      $scope.products = response.data;
 
-      //<---product.html using root with id----->
-      $scope.product = $scope.products;
-      $scope.getProduct = function (id) {
-          for (var i = 0; i < $scope.product.length; i++) {
-              if ($scope.product[i].id == id)
-                  return $scope.product[i];
-          }
-          return null;
+    $scope.getProducts = function(appURL){
 
-      }
+        $http.get($scope.appURL).then(function(response){
 
-      if ($routeParams.id != null) {
-          $scope.product = $scope.getProduct($routeParams.id);
-      }
-
-      /*<---pagination-->*/
+                            $scope.products = response.data;
 
 
+                            $scope.getProduct = function (id) {
+                                  for (var i = 0; i < $scope.product.length; i++) {
+                                      if ($scope.product[i].id == id)
+                                          return $scope.product[i];
+                                  }
+                                return null;
+                              }
+                              if ($routeParams.id != null) {
+                                  $scope.product = $scope.getProduct($routeParams.id);
+                              }
+                                  //<---pagination-->
+                               for (var i = 0; i < $scope.products.length; i++) {
+                                     if (i % $scope.itemsPerPage === 0) {
+                                         $scope.products[Math.floor(i / $scope.itemsPerPage)] = [ $scope.products[i] ];
+                                     } else {
+                                         $scope.products[Math.floor(i / $scope.itemsPerPage)].push($scope.products[i]);
+                                     }
+                                 }
+                               $scope.range = function (start, end) {
+                                   var ret = [];
+                                   if (!end) {
+                                       end = start;
+                                       start = 0;
+                                   }
+                                   for (var i = start; i < end/$scope.itemsPerPage; i++) {
+                                       ret.push(i);
+                                   }
+                                   return ret;
+                               };
 
-                   for (var i = 0; i < $scope.products.length; i++) {
-                         if (i % $scope.itemsPerPage === 0) {
-                             $scope.products[Math.floor(i / $scope.itemsPerPage)] = [ $scope.products[i] ];
-                         } else {
-                             $scope.products[Math.floor(i / $scope.itemsPerPage)].push($scope.products[i]);
-                         }
-                     }
-                   $scope.range = function (start, end) {
-                       var ret = [];
-                       if (!end) {
-                           end = start;
-                           start = 0;
-                       }
-                       for (var i = start; i < end/$scope.itemsPerPage; i++) {
-                           ret.push(i);
-                       }
-                       return ret;
-                   };
+                               $scope.prevPage = function () {
+                                   if ($scope.currentPage > 0) {
+                                       $scope.currentPage--;
+                                   }
+                               };
 
-                   $scope.prevPage = function () {
-                       if ($scope.currentPage > 0) {
-                           $scope.currentPage--;
-                       }
-                   };
+                             $scope.nextPage = function () {
+                                 if ($scope.currentPage < $scope.products.length/$scope.itemsPerPage- 1) {
+                                     $scope.currentPage++;
+                                 }
+                             };
 
-                 $scope.nextPage = function () {
-                     if ($scope.currentPage < $scope.products.length/$scope.itemsPerPage- 1) {
-                         $scope.currentPage++;
-                     }
-                 };
+                             $scope.setPage = function () {
+                                 $scope.currentPage = this.n;
+                             }
+                        }).catch(function(){
+                            console.log("Failed");
+                             $scope.status = 'Failed...';
+                        });
+    };
 
-                 $scope.setPage = function () {
-                     $scope.currentPage = this.n;
-                 }
-         //$scope.subHeader=info.company.name;
-        //$scope.companyName=info.company.name;*/
-    });
-
-    });
+});
