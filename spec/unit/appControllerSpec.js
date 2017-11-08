@@ -61,7 +61,6 @@ describe('Application Controller', function() {
                 expect($scope.product.discount).toBe("15");
             });
 
-
             /*
             -- adhoc testing can be done here
             it('Simple experiments', function() {

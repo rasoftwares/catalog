@@ -49,7 +49,6 @@ app.controller('appController', function($scope, $http, $filter, $routeParams, D
     //$scope.store = DataService.store;
     $scope.cart  = DataService.cart;
 
-
     $scope.products;
     $scope.product;
 
