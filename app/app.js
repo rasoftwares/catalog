@@ -82,17 +82,24 @@ app.controller('appController', function($scope, $http, $filter, $routeParams, D
         }
     }
 
+    $scope.getNetAmount = function(price, discount) {
+        return price - price * discount/100;
+    };
+
+    $scope.getSavedAmount = function(price, discount){
+        return (price) - (price - price * discount/100);
+    };
     $scope.getProducts = function(appURL) {
         if($scope.debug)
             console.log("getProudcts() ------>" + "currentProductID - " + $scope.currentProductID);
 
         $http.get($scope.appURL).then(function(response) {
 
-            $scope.products = response.data;
+          $scope.products = response.data;
 
-              /*if ($routeParams.id != null) {
-                  $scope.product = $scope.getProduct($routeParams.id);
-              }*/
+          /*if ($routeParams.id != null) {
+              $scope.product = $scope.getProduct($routeParams.id);
+          }*/
                   //<---pagination-->
                for (var i = 0; i < $scope.products.length; i++) {
                      if (i % $scope.itemsPerPage === 0) {

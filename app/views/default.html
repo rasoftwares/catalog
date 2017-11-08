@@ -16,6 +16,7 @@
 text-decoration: line-through;
 };
 
+
 </style>
 <div class="container-fluid">
 <table class="table table-bordered">
@@ -44,8 +45,8 @@ text-decoration: line-through;
             {{prd.description}}
             <p class="strike-through">Price : &#x20b9; {{ prd.price|currency:"":2}}</p>
             <p><font color="red">Discount : {{prd.discount}}%</font></p>
-            <p><font color="green"> Net Price : &#x20b9; {{prd.price-prd.price*prd.discount/100|currency:"":2}}</font></p>
-            <p> You Saved Amount : &#x20b9; {{(prd.price)-(prd.price-prd.price*prd.discount/100) |currency:"":2}}
+            <p><font color="green"> Net Price : &#x20b9; {{getNetAmount(prd.price, prd.discount)|currency:"":2}}</font></p>
+            <p> Your Saved Amount : &#x20b9; {{ getSavedAmount(prd.price, prd.discount)|currency:"":2}}
 
             <p><a href="" ng-click="cart.addItem(prd.id,prd.image,prd.name,prd.price,prd.discount,1)" class="btn btn-success" role="button"><span class="glyphicon glyphicon-plus"></span>
               <a href="#/images/{{prd.image}}" ng-click="setCurrentProductID(prd.id)" class="btn btn-warning" role="button"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></a></p>
