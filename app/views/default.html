@@ -11,6 +11,11 @@
 .pagination ul>li:last-child>a,.pagination ul>li:last-child>span{-webkit-border-radius:0 3px 3px 0;-moz-border-radius:0 3px 3px 0;border-radius:0 3px 3px 0;}
 .pagination-centered{text-align:center;}
 .pagination-right{text-align:right;}
+
+.strike-through {
+text-decoration: line-through;
+};
+
 </style>
 <div class="container-fluid">
 <table class="table table-bordered">
@@ -28,24 +33,23 @@
           </div><br>
 
 
-    <div class="row" ng-init="getProducts()">
-    <div class="col-md-3 col-xs-6 col-sm-3 col-lg-3" ng-repeat="product in products[currentPage]| filter:searchTxt">
+    <div class="row" ng-init="getProducts(appURL)">
+    <div class="col-md-3 col-xs-6 col-sm-3 col-lg-3" ng-repeat="prd in products[currentPage]| filter:searchTxt">
       <div >
         <div class="thumbnail">
-        <img ng-src="images/{{product.image}}.jpg" alt="{{product.name}}"  />
+        <img ng-src="images/{{prd.image}}.jpg" alt="{{prd.name}}"  />
           <div class="caption">
 
-              <h3> {{product.name}} <span ng-if="debug">- {{product.id}}</span> </h3>
-            <p><a href="#/images/{{product.image}}"><b>{{product.name}}</b></a><br />
-            {{product.description}}
-            <p><strike>Price : &#x20b9; {{ product.price|currency:"":2}}</strike></p>
-            <p><font color="red">Discount : {{product.discount}}%</font></p>
-            <p><font color="green"> Net Price : &#x20b9; {{product.price-product.price*product.discount/100|currency:"":2}}</font></p>
-            <p> You Saved Amount : &#x20b9; {{(product.price)-(product.price-product.price*product.discount/100) |currency:"":2}}
+              <h3> {{prd.name}} <span ng-if="debug">- {{prd.id}}</span> </h3>
+            <p><a href="#/images/{{prd.image}}" ng-click="setCurrentProductID(prd.id)"><b>{{prd.name}}</b></a><br />
+            {{prd.description}}
+            <p class="strike-through">Price : &#x20b9; {{ prd.price|currency:"":2}}</p>
+            <p><font color="red">Discount : {{prd.discount}}%</font></p>
+            <p><font color="green"> Net Price : &#x20b9; {{prd.price-prd.price*prd.discount/100|currency:"":2}}</font></p>
+            <p> You Saved Amount : &#x20b9; {{(prd.price)-(prd.price-prd.price*prd.discount/100) |currency:"":2}}
 
-
-           <p><a href="" ng-click="cart.addItem(product.id,product.image,product.name,product.price,product.discount,1)" class="btn btn-success" role="button"><span class="glyphicon glyphicon-plus"></span>
-              <a href="#/images/{{product.image}}" class="btn btn-warning" role="button"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></a></p>
+            <p><a href="" ng-click="cart.addItem(prd.id,prd.image,prd.name,prd.price,prd.discount,1)" class="btn btn-success" role="button"><span class="glyphicon glyphicon-plus"></span>
+              <a href="#/images/{{prd.image}}" ng-click="setCurrentProductID(prd.id)" class="btn btn-warning" role="button"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></a></p>
             <!--<a href="#" class="btn btn-warning" role="button"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a>-->
              </p>
           </div>
