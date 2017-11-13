@@ -1,0 +1,14 @@
+<div class="container-fluid" ng-controller="checkoutController">
+  <div class="container-fluid">
+
+  <H4>CHECKOUT </H4>
+  <table class="table table-bordered">
+      <tr class="well">
+          <td class="tdRight" colspan="4" >
+               Order Summary: <td>
+                <b>{{cart.getTotalCount()}}</b> items </td>
+                <td>Rs. <b>{{cart.getTotalPrice() | currency:"":2}}</b></td>
+          </td>
+      </tr>
+    </table>
+</div>

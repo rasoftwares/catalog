@@ -21,6 +21,9 @@ app.config(['$routeProvider', function($routeProvider){
       when('/cart', {
         templateUrl:  src_dir +'cart.html',
       }).
+      when('/checkout', {
+        templateUrl:  src_dir +'checkout.html',
+      }).
       otherwise({
         redirectTo: '/default'
       });
@@ -136,7 +139,7 @@ app.controller('appController', function($scope, $http, $filter, $routeParams, D
                  $scope.currentPage = this.n;
              }
         }).catch(function(){
-            console.log("call to url " + $scope.appURL  + " Failed");
+              console.log("call to url " + $scope.appURL  + " Failed");
              $scope.status = 'call to url  ' + $scope.appURL  + ' Failed';
         });
     };
