@@ -27,7 +27,7 @@ text-decoration: line-through;
       }
       .text {
           padding: 2px 16px;
-          font-size: 15px;
+          font-size: 13px;
           font-family:"cursive";
           font-style: bold;
       }
@@ -38,6 +38,7 @@ text-decoration: line-through;
     max-width: 150px;
     max-height: 150px;
     }
+
 
 </style>
 <div class="container-fluid">
@@ -65,10 +66,9 @@ text-decoration: line-through;
         <div class="text"> {{prd.name}} <span ng-if="debug">- {{prd.id}}</span></div>
            <!--  <p><a href="#/images/{{prd.image}}" ng-click="setCurrentProductID(prd.id)"><b>{{prd.name}}</b></a><br />
             {{prd.description}}-->
-          <div class="text"><font class="strike-through"> Price : &#x20b9; {{ prd.price|currency:"":2}}</font></div>
-
-          <div class="text"> <font color="green">NetPrice : &#x20b9; {{getNetAmount(prd.price, prd.discount)|currency:"":2}}</font></div>
-          <div class="text"><font color="red">You Saved : {{prd.discount}}% (&#x20b9;{{ getSavedAmount(prd.price, prd.discount)|currency:"":2}})</font></div>
+          <div class="text"><font class="strike-through">&#x20b9;{{ prd.price|currency:"":2}}</font><font color="green">  &#x20b9;{{getNetAmount(prd.price, prd.discount)|currency:"":2}}</font></div>
+          <!--<div class="text"> <font color="green">NetPrice : &#x20b9; {{getNetAmount(prd.price, prd.discount)|currency:"":2}}</font></div>-->
+          <div class="text"><font color="red">You Save : &#x20b9;{{ getSavedAmount(prd.price, prd.discount)|currency:"":2}} ({{prd.discount}}%)</font></div>
 
           <div class="text"></div>
 
