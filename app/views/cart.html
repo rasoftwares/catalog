@@ -91,7 +91,7 @@
                     <i class="icon-trash icon-white" /> clear cart
                 </button>
                 <button
-                    class="btn btn-block"
+                    class="btn btn-block btn-primary"
                     onclick="window.location.href='index.html#/checkout'">
                     <i class="icon-chevron-left" /> checkout
                 </button>
@@ -105,6 +105,12 @@
                     ng-click="cart.checkout('PayPal')"
                     ng-disabled="cart.getTotalCount() < 1">
                     <i class="icon-ok icon-white" /> check out using PayPal
+                </button>
+                <button
+                    class="btn btn-block btn-primary"
+                    ng-click="cart.checkout('PayPal')"
+                    ng-disabled="cart.getTotalCount() < 1">
+                    <i class="icon-ok icon-white" /> check out
                 </button>
               <!--  <button
                     class="btn btn-block btn-primary"
