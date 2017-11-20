@@ -28,6 +28,8 @@ text-decoration: line-through;
       .text {
           padding: 2px 16px;
           font-size: 15px;
+          font-family:"cursive";
+          font-style: bold;
       }
 
       .size {
@@ -56,8 +58,10 @@ text-decoration: line-through;
 
     <div class="row" ng-init="getProducts(appURL)">
     <div class="col-md-3 col-xs-6 col-sm-3 col-lg-3" ng-repeat="prd in products[currentPage]| filter:searchTxt">
-        <div class="thumbnail">
-        <img class="size" ng-src="images/{{prd.image}}.jpg" alt="{{prd.name}}" />
+        <div class="">
+        <a href="#/images/{{prd.image}}" ng-click="setCurrentProductID(prd.id)">
+
+        <img class="size" ng-src="images/{{prd.image}}.jpg" alt="{{prd.name}}" /></a>
         <div class="text"> {{prd.name}} <span ng-if="debug">- {{prd.id}}</span></div>
            <!--  <p><a href="#/images/{{prd.image}}" ng-click="setCurrentProductID(prd.id)"><b>{{prd.name}}</b></a><br />
             {{prd.description}}-->
@@ -68,8 +72,8 @@ text-decoration: line-through;
 
           <div class="text"></div>
 
-          <div class="text"> <a href="" ng-click="cart.addItem(prd.id,prd.image,prd.name,prd.price,prd.discount,1)" class="btn btn-success" role="button"><span class="glyphicon glyphicon-plus"></span>
-          <a href="#/images/{{prd.image}}" ng-click="setCurrentProductID(prd.id)" class="btn btn-warning" role="button"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></a></p>
+          <div class="text"> <a href="" ng-click="cart.addItem(prd.id,prd.image,prd.name,prd.price,prd.discount,1)" class="btn btn-success" role="button"><span class="glyphicon glyphicon-plus"></span></a>
+          <a href="#/images/{{prd.image}}" ng-click="setCurrentProductID(prd.id)" class="btn btn-warning" role="button"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></a>
             <!--<a href="#" class="btn btn-warning" role="button"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a>-->
           </div>
           </div>
