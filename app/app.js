@@ -63,8 +63,8 @@ app.controller('appController', function($scope, $http, $filter, $routeParams, D
         'data' : '-KtQNH3Sf_ffvpoBLD-9/product'
     };
     //$scope.appURL= "https://localhost:9000/rest/inventory;"
-    $scope.appURL="https://api.myjson.com/bins/dgzur";
-    //$scope.appURL = firebase.url + firebase.environment + "/" + firebase.dataStore + "/" + firebase.data +".json?auth="+ firebase.authKey;
+    //$scope.appURL="https://api.myjson.com/bins/dgzur";
+    $scope.appURL = firebase.url + firebase.environment + "/" + firebase.dataStore + "/" + firebase.data +".json?auth="+ firebase.authKey;
 
     //This ID is used to pass the current product id between home to product screen.
     $scope.currentProductID = 0;
