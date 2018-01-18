@@ -159,7 +159,7 @@ app.controller('appController', function($scope, $http, $filter, $routeParams, D
 
 
 
-/*var username = "admin";
+/*var username = "admin";*
 var password = "password";
 
 var url = 'http://localhost:9000/admin/password/rest/inventory/';
