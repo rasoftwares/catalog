@@ -8,7 +8,7 @@
 </head>
 <body>
 	<%
-		String workingKey ="D08FC41B9329088B95640DBBA7069143";		//32 Bit Alphanumeric Working Key should be entered here so that data can be decrypted.
+		String workingKey ="4EB5381F39FF37090F5C80A352418AFF";		//32 Bit Alphanumeric Working Key should be entered here so that data can be decrypted.
 		String encResp= request.getParameter("encResp");
 		AesCryptUtil aesUtil=new AesCryptUtil(workingKey);
 		String decResp = aesUtil.decrypt(encResp);
