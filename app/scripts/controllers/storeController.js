@@ -9,7 +9,8 @@ app.controller('storeController', function($scope,$http,$filter,$routeParams,Dat
 app.factory("DataService", function () {
     //var myStore = new store();
     var myCart = new shoppingCart();
-    myCart.addCheckoutParameters("PayPal", "bernardo.castilho-facilitator@gmail.com");
+    myCart.addCheckoutParameters("ccavenue", "168151");
+
     myCart.addCheckoutParameters("Google", "500640663394527",
         {
             ship_method_name_1: "UPS Next Day Air",
@@ -179,8 +180,8 @@ app.factory("DataService", function () {
     shoppingCart.prototype.addCheckoutParameters = function (serviceName, merchantID, options) {
 
         // check parameters
-        if (serviceName != "PayPal" && serviceName != "Google") {
-            throw "serviceName must be 'PayPal' or 'Google'.";
+        if (serviceName != "ccavenue" && serviceName != "Google") {
+            throw "serviceName must be 'ccavenue' or 'Google'.";
         }
         if (merchantID == null) {
             throw "A merchantID is required in order to checkout.";
@@ -210,7 +211,7 @@ app.factory("DataService", function () {
             throw "Cannot get checkout parameters for '" + serviceName + "'.";
         }
         switch (parms.serviceName) {
-            case "PayPal":
+            case "ccavenue":
                 this.checkoutPayPal(parms, clearCart);
                 break;
             case "Google":
@@ -246,7 +247,7 @@ app.factory("DataService", function () {
 
         // build form
         var form = $('<form/></form>');
-        form.attr("action", "https://www.sandbox.paypal.com/nvp");
+        form.attr("action", " https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction");
         form.attr("method", "POST");
         form.attr("style", "display:none;");
         this.addFormFields(form, data);
@@ -260,7 +261,7 @@ app.factory("DataService", function () {
     }
 
 
-    shoppingCart.prototype.checkoutGoogle = function (parms, clearCart) {
+  /*shoppingCart.prototype.checkoutGoogle = function (parms, clearCart) {
 
         // global data
         var data = {};
@@ -291,7 +292,7 @@ app.factory("DataService", function () {
         this.clearCart = clearCart == null || clearCart;
         form.submit();
         form.remove();
-    }
+    }*/
 
     // utility methods
     shoppingCart.prototype.addFormFields = function (form, data) {

@@ -1,7 +1,111 @@
+<script>
+	window.onload = function() {
+		var d = new Date().getTime();
+		document.getElementById("tid").value = d;
+	};
+</script>
+
 <div class="container-fluid" ng-controller="checkoutController">
   <div class="container-fluid">
 
   <H4>Checkout  Date : {{getDate()}}</H4>
+
+  <form method="post" name="customerData" action="ccavRequestHandler.jsp">
+		<table width="40%" height="100" border='1' align="center">
+
+		</table>
+		<table width="40%" height="100" border='1' align="center">
+		<td>TID	:</td><td><input type="text" name="tid" id="tid"   readonly /></td>
+			</tr>
+			<tr>
+				<td>Merchant Id</td>
+				<td><input type="text" name="merchant_id" id="merchant_id" value="168151" /> </td>
+			</tr>
+			<tr>
+				<td>Order Id</td>
+				<td><input type="text" name="order_id" value="1" /></td>
+			</tr>
+			<tr>
+				<td>Currency</td>
+				<td><input type="text" name="currency" value="INR" /></td>
+			</tr>
+        <tr>
+			<tr>
+				<td>Amount</td>
+				<td><input type="text" name="amount" value="1200.00" /></td>
+			</tr>
+			<tr>
+				<td>Redirect URL</td>
+				<td><input type="text" name="redirect_url"
+					value="www.rablion.com" />
+				</td>
+			</tr>
+			<tr>
+				<td>Cancel URL</td>
+				<td><input type="text" name="cancel_url"
+					value="www.rablion.com" />
+				</td>
+			</tr>
+			<tr>
+				<td>Language</td>
+				<td><input type="text" name="language" id="language" value="EN" /></td>
+			</tr>
+
+				<tr>
+				<td>Billing Email:</td>
+				<td><input type="text" name="billing_email"
+					value="" /></td>
+			</tr>
+
+			<tr>
+				<td>Shipping Name</td>
+				<td><input type="text" name="delivery_name" value="marimuthu" />
+				</td>
+			</tr>
+			<tr>
+				<td>Shipping Address:</td>
+				<td><input type="text" name="delivery_address"
+					value="" /></td>
+			</tr>
+			<tr>
+				<td>Shipping City:</td>
+				<td><input type="text" name="delivery_city" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td>Shipping State:</td>
+				<td><input type="text" name="delivery_state" value="" />
+				</td>
+			</tr>
+			<tr>
+				<td>Shipping Zip:</td>
+				<td><input type="text" name="delivery_zip" value="" /></td>
+			</tr>
+			<tr>
+				<td>Shipping Country:</td>
+				<td><input type="text" name="delivery_country" value="India" />
+				</td>
+			</tr>
+			<tr>
+				<td>Shipping Tel:</td>
+				<td><input type="text" name="delivery_tel" value="" />
+				</td>
+			</tr>
+
+				<tr>
+				<td>Promo Code:</td>
+				<td><input type="text" name="promo_code" value=""/></td>
+			</tr>
+			<tr>
+				<td>Customer Id:</td>
+				<td><input type="text" name="customer_identifier" value=""/></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><INPUT TYPE="submit" value="Checkout"></td>
+			</tr>
+		</table>
+	</form>
   <table class="table table-bordered">
       <tr class="well">
           <td class="tdRight" colspan="4" >
@@ -10,6 +114,6 @@
          </tr>
               <tr>   <td>
                 <b>{{cart.getTotalCount()}}</b> items </td>
-                <td>Rs. <b>{{cart.getTotalPrice() | currency:"":2}}</b></td></tr>
+                <td>Rs.<b>{{cart.getTotalPrice() | currency:"":2}}</b></td></tr>
     </table>
 </div>

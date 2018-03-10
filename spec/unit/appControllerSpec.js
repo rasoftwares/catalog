@@ -2,8 +2,7 @@ describe('Application Controller', function() {
 
 	var $scope;
 	var ctrl;
-	var firebase_URL = 'http://localhost:9000/rest/inventory';
-
+	var firebase_URL = 'https://onetouch-d52d4.firebaseio.com/dev/request/-KtQNH3Sf_ffvpoBLD-9/product.json?auth=ve8PdopndzS3yD35SMF6KAd4VKpHQuxUotXNeHGw';
     beforeEach(module('catalogApp'));
 
     beforeEach(inject(function($controller, $injector){

@@ -61,7 +61,7 @@
             <button
                 class="btn btn-block btn-danger"
                 ng-click="cart.addItem(product.id,product.image,product.name, product.price,product.discount, -10000)"
-                ng-disabled="cart.getTotalCount(product.image) < 1">
+                ng-disabled="cart.getTotalCount(product.id) < 1">
                 <span class="glyphicon glyphicon-trash"></span> Remove From Cart
             </button>
             <button
