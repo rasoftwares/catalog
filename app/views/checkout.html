@@ -5,12 +5,14 @@
 		var d = new Date().getTime();
 		document.getElementById("tid").value = d;
 	};
+
+
 </script>
 
-<div class="container-fluid">
+<div class="container-fluid" ng-controller="storeController">
   <div class="container-fluid">
 
-  <H4>Checkout  Date : {{getDate()}}</H4>
+  <H4>Date : {{getDate |date}}</H4>
 
   <form method="post" name="customerData" action="ccavRequestHandler.jsp">
 		<table width="40%" height="100" border='1' align="center">
@@ -34,7 +36,7 @@
         <tr>
 			<tr>
 				<td>Amount</td>
-				<td><input type="text" name="amount" value="1200.00" /></td>
+				<td><input type="text" name="amount"  ng-model="cart.getTotalPrice()" readonly/></td>
 			</tr>
 			<tr>
 				<td>Redirect URL</td>
@@ -108,14 +110,40 @@
 			</tr>
 		</table>
 	</form>
+<!--	  <form method="post" name="customerData" action="ccavRequestHandler.jsp">
   <table class="table table-bordered">
       <tr class="well">
           <td class="tdRight" colspan="4" >
                Order Summary
              </td>
          </tr>
-              <tr>   <td>
-                <b>{{cart.getTotalCount()}}</b> items </td>
-                <td>Rs.<b>{{cart.getTotalPrice() | currency:"":2}}</b></td></tr>
+				 <tr>  <td>
+
+						<b>{{cart.getTotalCount()}}</b> items </td>
+						<td>Rs.<b>{{cart.getTotalPrice() | currency:"":2}}</b></td></tr>
+				 <tr>	<td>Merchant Id</td>
+					 <td><input type="text" name="merchant_id" id="merchant_id" value="168151"  readonly /> </td>
+				 </td></tr>
+				 <tr>
+	 				<td>Order Id</td>
+	 				<td><input type="text" name="order_id" value="1" /></td>
+	 			</tr>
+	 			<tr>
+	 				<td>Currency</td>
+	 				<td><input type="text" name="currency" value="INR"   readonly /></td>
+	 			</tr>
+	         <tr>
+	 			<tr>
+	 				<td>Amount</td>
+	 				<td><input type="text" name="amount"  ng-model="cart.getTotalPrice()" readonly/></td>
+	 			</tr>
+
+
+
+								<tr>
+									<td></td>
+									<td><INPUT TYPE="submit" value="Checkout"></td>
+								</tr>
     </table>
+	</form>-->
 </div>
